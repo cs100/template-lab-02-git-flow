@@ -56,7 +56,13 @@ Then commit and push your changes to your respective branches. Before merging th
 ## Pull Requests
 Pull requests exist as a way to review a development branch before merging into a stable branch. When the author of the development branch is finished with a part, they open a request through GitHub. They specify which branch they'd like to merge into and describe the changes they made.
 
-Let's try doing this now. Save 
+Let's try doing this now. Both partners should open up their GitHub repository to prepare the pull request. 
+
+Partner 1 should press on the branch dropdown menu and select `<partner-1-github-username>/add-fibonacci-function`. Next, click on "New pull request". This will bring up the editing screen for the pull request. Title it `Fibonacci Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand. Next, added a reviewer by clicking on the "Reviewers" section to the right of the description box. Search Partner 2's username and click on their username. This will assign Partner 2 to review the pull request. Under "Reviewers", click on "Assignees", then search and select Partner 1's username. This denotes that Partner 1 is in charge of the branch that is being pulled in. Under "Assignees", select "Labels" and choose "enhancement" (you can also create a custom label by clicking on "edit labels" on the bottom of the dropbown menu). 
+
+The rest of the sections, Projects and Milestones, don't need to be picked. Projects are useful for when developers need to split a large project into smaller projects, and Milestones are useful for agile development.
+
+Partner 2 should follow the same steps above, except selecting `<partner-2-github-username>/add-main-prompt` from the branch dropdown menu. Make sure to choose Partner 1 as the reviewer and Partner 2 as the assignee.
 
 ## Reverting Commits
 
