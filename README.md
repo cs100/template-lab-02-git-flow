@@ -74,9 +74,19 @@ Partner 2 should follow the same steps above, except by selecting `<partner-2-gi
 
 ### Reviewing a Pull Request
 
-Partner 2 should now review Partner 1's PR. Go to the "Pull requests" tab and click on `Fibonacci Function`. From here, you can review comments made about the PR, all commits associated with that PR, and what changed in the files.
+Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and click on `Fibonacci Function`. From here, you can review comments made about the PR, all commits associated with that PR, and what changed within the files.
 
-Near the bottom, you should see a green checkmark. This means GitHub found no possible merge conflicts. Go ahead and press "Merge pull request".
+Near the bottom, you should see a green checkmark. This means GitHub found no possible merge conflicts. Go ahead and press "Merge pull request". This completes the merge from the `<partner-1-github-username>/add-fibonacci-function` branch to the master branch. You are now given the option to delete the branch. It's nice to keep repositories neat and tidy, so go ahead and delete the branch.
+
+Partner 1 should navigate to the "Pull requests" tab and click on `Main Prompt`. Unlike the first PR, this one has a merge conflict. Let's resolve that now.
+
+Click on "Resolve conflicts". You will see an editor with `main.cpp` open like so:
+
+*insert image here*
+
+Lines 11 - 18 is the new code coming in from the branch being merged, while lines 18-20 is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete lines 11 and 18-20.
+
+In the top right, click on "Mark as revolved", then "Commit merge". This will commit these changes and give the green checkmark to show no more conflicts. Go ahead and press "Merge pull request", which will complete the PR.
 
 ## Code Reviews
 
