@@ -90,9 +90,19 @@ Lines 11 - 18 is the new code coming in from the branch being merged, while line
 
 In the top right, click on "Mark as revolved", then "Commit merge". This will commit these changes and give the green checkmark to show no more conflicts. Go ahead and press "Merge pull request", which will complete the PR.
 
-## Code Reviews
-
 ## Reverting Commits
+
+Throughout the development process, there are times where new commits may introduce problems in existing code. Luckily, `git revert` exists.
+
+Let's say you push a commit that breaks something. To revert back to the last commit, type the following command.
+
+```
+git revert HEAD
+```
+
+This will create a new commit that is left off at the last commit. To revert to 2 or more commits down the chain, replace `HEAD` with the commit reference. 
+
+## Code Reviews
 
 ## Tagging
 
