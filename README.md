@@ -55,6 +55,8 @@ Commit and push your changes to your respective branches.
 
 > Note: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
 
+Each partner should also refresh their local git by running `git fetch`. This will update your local repository so that the other partner's branch will show up.
+
 Before merging the branches, it is good practice to open a pull request that can be reviewed by your team members.
 
 ## Pull Requests
