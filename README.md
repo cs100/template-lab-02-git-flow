@@ -32,16 +32,16 @@ Partner 1 should add the following exchange to the main function in `main.cpp`:
 using namespace std;
 
 int fibonacci(int n) {
-	if (n <= 1)
-		return n;
-	return fibonacci(n-1) + fibonacci(n-2);
+    if (n <= 1)
+        return n;
+    return fibonacci(n-1) + fibonacci(n-2);
 }
 
 int main() {
     cout << "We should probably have a prompt for the function here." << endl;
-	cout << "Leaving this job for Partner 2. Have fun!" << endl;
-
-	return 0;
+    cout << "Leaving this job for Partner 2. Have fun!" << endl;
+    
+    return 0;
 }
 ```
 
@@ -53,9 +53,9 @@ Partner 2 should add the following user prompt in the main function in `main.cpp
 using namespace std;
 
 int fibonacci(int n) {
-	if (n <= 1)
-		return n;
-	return fibonacci(n-1) + fibonacci(n-2);
+    if (n <= 1)
+        return n;
+    return fibonacci(n-1) + fibonacci(n-2);
 }
 
 int main() {
