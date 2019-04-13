@@ -18,20 +18,31 @@ In the Git lab, we learned that branching is used when developers want to change
 Each partner should now create a branch from the master branch. Both partners should title their branches as such, respectively:
 
 ```
-$ git branch <partner-1-github-username>/add-fib-func
+$ git branch <partner-1-github-username>/add-suggestion
 $ git branch <partner-2-github-username>/add-main-prompt
 ```
 
 Make sure to checkout the branches after creating them.
 
-Partner 1 should add the following fibonacci function above the main function in `main.cpp`:
+Partner 1 should add the following exchange to the main function in `main.cpp`:
 
 ```
-int fibonacci(int n) { 
-    if (n <= 1) 
-        return n; 
-    return fibonacci(n-1) + fibonacci(n-2); 
-} 
+#include <iostream>
+
+using namespace std;
+
+int fibonacci(int n) {
+	if (n <= 1)
+		return n;
+	return fibonacci(n-1) + fibonacci(n-2);
+}
+
+int main() {
+    cout << "We should probably have a prompt for the function here." << endl;
+	cout << "Leaving this job for Partner 2. Have fun!" << endl;
+
+	return 0;
+}
 ```
 
 Partner 2 should add the following user prompt in the main function in `main.cpp`:
@@ -40,6 +51,12 @@ Partner 2 should add the following user prompt in the main function in `main.cpp
 #include <iostream>
 
 using namespace std;
+
+int fibonacci(int n) {
+	if (n <= 1)
+		return n;
+	return fibonacci(n-1) + fibonacci(n-2);
+}
 
 int main() {
     int n;
@@ -66,7 +83,7 @@ Let's try doing this now. Both partners should open up their GitHub repository t
 
 ### Creating a Pull Request
 
-Partner 1 should press on the branch dropdown menu and select `<partner-1-github-username>/add-fibonacci-function`. Next, click on "New pull request". This will bring up the editing screen for the PR. Title it `Fibonacci Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand. Next, added a reviewer by clicking on the "Reviewers" section to the right of the description box. Search Partner 2's username and click on their username. This will assign Partner 2 to review the PR. Under "Reviewers", click on "Assignees", then search and select Partner 1's username. This denotes that Partner 1 is in charge of the branch that is being pulled in. Under "Assignees", select "Labels" and choose "enhancement" (you can also create a custom label by clicking on "edit labels" on the bottom of the dropbown menu). 
+Partner 1 should press on the branch dropdown menu and select `<partner-1-github-username>/add-suggestion`. Next, click on "New pull request". This will bring up the editing screen for the PR. Title it `Suggestion` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand. Next, added a reviewer by clicking on the "Reviewers" section to the right of the description box. Search Partner 2's username and click on their username. This will assign Partner 2 to review the PR. Under "Reviewers", click on "Assignees", then search and select Partner 1's username. This denotes that Partner 1 is in charge of the branch that is being pulled in. Under "Assignees", select "Labels" and choose "enhancement" (you can also create a custom label by clicking on "edit labels" on the bottom of the dropbown menu). 
 
 The rest of the sections, Projects and Milestones, don't need to be picked. Projects are useful for when developers need to split a large project into smaller projects, and Milestones are useful for agile development.
 
@@ -76,9 +93,9 @@ Partner 2 should follow the same steps above, except by selecting `<partner-2-gi
 
 ### Reviewing a Pull Request
 
-Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and click on `Fibonacci Function`. From here, you can review comments made about the PR, all commits associated with that PR, and what changed within the files.
+Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and click on `Suggestion`. From here, you can review comments made about the PR, all commits associated with that PR, and what changed within the files.
 
-Near the bottom, you should see a green checkmark. This means GitHub found no possible merge conflicts. Go ahead and press "Merge pull request". This completes the merge from the `<partner-1-github-username>/add-fibonacci-function` branch to the master branch. You are now given the option to delete the branch. It's nice to keep repositories neat and tidy, so go ahead and delete the branch.
+Near the bottom, you should see a green checkmark. This means GitHub found no possible merge conflicts. Go ahead and press "Merge pull request". This completes the merge from the `<partner-1-github-username>/add-suggestion` branch to the master branch. You are now given the option to delete the branch. It's nice to keep repositories neat and tidy, so go ahead and delete the branch.
 
 Partner 1 should navigate to the "Pull requests" tab and click on `Main Prompt`. Unlike the first PR, this one has a merge conflict.
 
