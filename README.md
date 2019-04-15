@@ -26,7 +26,7 @@ Make sure to checkout the branches after creating them.
 
 Partner 1 should add the following exchange to the main function in `main.cpp`:
 
-```
+```c++
 #include <iostream>
 
 using namespace std;
@@ -47,7 +47,7 @@ int main() {
 
 Partner 2 should add the following user prompt in the main function in `main.cpp`:
 
-```
+```c++
 #include <iostream>
 
 using namespace std;
