@@ -101,13 +101,22 @@ Partner 1 should navigate to the "Pull requests" tab and click on `Main Prompt`.
 
 <img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/resolve-conflicts.png?raw=true" width="600">
 
-Let's resolve that now. Click on "Resolve conflicts". You will see an editor with `main.cpp` open like so:
+Let's resolve that now. Partner 1 should go back to their local environment and type `git fetch origin` to fetch and store all the remote updates locally. Next, type `git checkout -b <partner-1-github-username>/add-main-prompt origin/<partner-1-github-username>/add-main-prompt`, which will copy Partner 2's remote branch into a new local branch and check it out. Finally, type `git merge master` to merge the current branch you checked out into master. You should see something like below:
 
-<img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/conflict-editor.png?raw=true" width="500">
+```
+Auto-merging main.cpp
+CONFLICT (content): Merge conflict in main.cpp
+Automatic merge failed; fix conflicts and then commit the result.
+```
+If you open `main.cpp` in a text editor, you should see some lines that include `<<<<<<< HEAD`, `=======`, and `>>>>>>> master`. 
 
-Lines 11 - 18 is the new code coming in from the branch being merged, while lines 18-20 is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete lines 11 and 18-20.
+<img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/conflict.png?raw=true" width="600">
 
-In the top right, click on "Mark as revolved", then "Commit merge". This will commit these changes and give the green checkmark to show no more conflicts. Go ahead and press "Merge pull request", which will complete the PR.
+Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in from the branch being merged, while everything past `=======` and before `>>>>>>> master` is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete everything past `=======` and before `>>>>>>> master`. Make sure to also delete these indicators, or you will get obvious compilation errors.
+
+Once you are done, be sure to commit and push as usual.
+
+Partner 1 should now refresh the `Main Prompt` PR on GitHub. Notice that every commit made in the branch should appear within the PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process as stated above.
 
 ## Reverting Commits
 
