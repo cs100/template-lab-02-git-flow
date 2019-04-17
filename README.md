@@ -1,16 +1,10 @@
-# Git Flow
+# The Gitflow Workflow
 
 > Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla))
 
-For most of our professional careers in the industry, we work on projects with many individuals. When working on a project with a team (like the upcoming R'Shell), it's important to communicate what part is currently being worked on.
+For most of our professional careers in the industry, we work on projects alongside many individuals. Everyone has their own style of coding, like choosing between tabs or spaces. While agreeing on a certain convention is nice, efficient project workflow is an important methodology to follow. When working on a project with a team (like the upcoming R'Shell), it's important to communicate what part is currently being worked on.
 
-## An Example of a Merge Conflict
-Let's say Alice and Bob are concurrently working on the same feature of a project. They both pull the most recent commit in their development branch and start coding away. However, they didn't properly communicate on what part of the feature they are working on. Because of this, Alice edits over existing code, while Bob leaves that code intact. Alice finishes first and proceeds to commit and push her changes (without any error, since she made the commit before Bob). When Bob finishes his part, he commits and tries to push, but gets a merge conflict in the process.
-
-## How to Avoid Merge Conflicts
-According to [GitHub's own article](https://help.github.com/en/articles/resolving-a-merge-conflict-using-the-command-line), merge conflicts occur when separate changes are made to the same line of a file by two or more people. They can also occur when one person edits a file while another person deletes that file off the same commit.
-
-As stated earlier, communication with team members are key when working on any project. One way to avoid conflicts is to make sure that every team member is editing unique parts of the project. In the event the same file needs to be edited by multiple people, branching seems like the best bet.
+Many [Git workflows](https://www.endpoint.com/blog/2014/05/02/git-workflows-that-work) exist today, and they all have their pros and cons. However, Gitflow holds a special place for developers for being the first successfully-structured workflow. The original blog post that introduced this workflow can be found [here](https://nvie.com/posts/a-successful-git-branching-model/).
 
 ## The Importance of Effective Branching
 In the Git lab, we learned that branching is used when developers want to change code without having conflicts commit after commit. When working on a team, it is wise to separate what someone is working on by making a branch unique to that addition or edit. When that team member finishes their part, they can then merge back into the master or main development branch.
@@ -101,6 +95,7 @@ Partner 1 should navigate to the "Pull requests" tab and click on `Main Prompt`.
 
 <img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/resolve-conflicts.png?raw=true" width="600">
 
+#### Fixing a Merge Conflict
 Let's resolve that now. Partner 1 should go back to their local environment and type `git fetch origin` to fetch and store all the remote updates locally. Next, type `git checkout -b <partner-1-github-username>/add-main-prompt origin/<partner-1-github-username>/add-main-prompt`, which will copy Partner 2's remote branch into a new local branch and check it out. Finally, type `git merge master` to merge the current branch you checked out into master. You should see something like below:
 
 ```
