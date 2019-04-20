@@ -18,6 +18,8 @@ $ git branch <partner-2-github-username>/add-main-prompt
 
 Make sure to checkout the branches after creating them.
 
+### The First Branch
+
 Partner 1 should add the following exchange to the main function in `main.cpp`:
 
 ```c++
@@ -38,6 +40,16 @@ int main() {
     return 0;
 }
 ```
+
+### Issue Tracking
+
+This is a good time to learn about the Issues tab under every GitHub repository. 
+
+We see that Partner 1 added the fibonacci function, but there is no way to use it in main. Let's fix that! 
+
+Partner 2 should go to the Issues tab and open a new issue. Title it "Fibonacci Not Outputting". On the right, assign Partner 2 (through their GitHub) and label the issue "invalid". Add a description you see fit, then submit the issue. We'll come back to this later.
+
+### The Second Branch
 
 Partner 2 should add the following user prompt in the main function in `main.cpp`:
 
@@ -70,6 +82,10 @@ Each partner should also refresh their local git by running `git fetch`. This wi
 
 Before merging the branches, it is good practice to open a pull request that can be reviewed by your team members.
 
+## Code Reviews
+
+Throughout a Scrum period, team members will most likely be working on integrating features into existing code. To help understand what is being added, code reviews are usually held with the team or scrum master to better explain the addition. The traditional way is to meet and work through explaining every critical section of code, but doing this through pull requests is also acceptable.
+
 ## Pull Requests
 Pull requests (PRs) exist as a way to review a development branch before merging into a stable branch. When the author of the development branch is finished with a part, they open a request through GitHub. They specify which branch they'd like to merge into and describe the changes they made.
 
@@ -84,6 +100,10 @@ The rest of the sections, Projects and Milestones, don't need to be picked. Proj
 Once done finalizing the PR, click on "Create pull request".
 
 Partner 2 should follow the same steps above, except by selecting `<partner-2-github-username>/add-main-prompt` from the branch dropdown menu. Also, title it `Main Prompt`. Make sure to choose Partner 1 as the reviewer and Partner 2 as the assignee.
+
+### Issue Tracking Strikes Back!
+
+Remember that issue you made? Go back to it and update it by writing `Fixed in #2` as a comment. #2 should hyperlink to the PR Partner 2 made that fixes that issue. Once that comment is made, go ahead and press on "Close issue".
 
 ### Reviewing a Pull Request
 
@@ -113,9 +133,19 @@ Once you are done, be sure to commit and push as usual.
 
 Partner 1 should now refresh the `Main Prompt` PR on GitHub. Notice that every commit made in the branch should appear within the PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process as stated above.
 
+## Tagging
+
+Often, you’ll want to tag certain git commits because they are special. The most common reason to tag a commit in git is to tag it as a beta or release version, especially when using semantic versioning schemes. Let's assume that our code is now ready for release as a v1.0.0 and tag it as such.
+
+```
+$ git tag -a v1.0.0 -m “Initial release”
+```
+
+The -m in this case works the same as it does when performing a commit, allowing us to add a message but bypassing the editor to do so. Note that if you wanted to tag a commit besides the current commit you would need to add the commit hash after the version number (but before the message). Normally a 1.0.0 release would have lots of additional notes on the current state of the software, but this is just an example. These tagged versions are stored in a special section of the repository on GitHub along with compressed versions of the source files to make public releases easier.
+
 ## Reverting Commits
 
-Throughout the development process, there are times where new commits may introduce problems in existing code. Luckily, `git revert` exists.
+Throughout the development process, there are times where new commits may introduce problems in existing code. For these situations, git handles reversion quite well.
 
 Let's say you push a commit that breaks something. To revert back to the last commit, type the following command.
 
@@ -123,10 +153,4 @@ Let's say you push a commit that breaks something. To revert back to the last co
 git revert HEAD
 ```
 
-This will create a new commit that is left off at the last commit. To revert to 2 or more commits down the chain, replace `HEAD` with the commit reference. 
-
-## Code Reviews
-
-## Tagging
-
-## Issue Tracking
+This will create a new commit that is left off at the last commit. To revert to 2 or more commits down the chain, replace `HEAD` with the commit reference (the long string of characters that identify each commit).
