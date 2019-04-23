@@ -20,6 +20,8 @@ Make sure to checkout the branches after creating them.
 
 ### The First Branch
 
+We have provided a `main.cpp` file for editing.
+
 Partner 1 should add the following exchange to the main function in `main.cpp`:
 
 ```c++
@@ -84,7 +86,7 @@ Before merging the branches, it is good practice to open a pull request that can
 
 ## Code Reviews
 
-Throughout a Scrum period, team members will most likely be working on integrating features into existing code. To help understand what is being added, code reviews are usually held with the team or scrum master to better explain the addition. The traditional way is to meet and work through explaining every critical section of code, but doing this through pull requests is also acceptable.
+Throughout development, team members will most likely be working on integrating features into existing code. To help understand what is being added, code reviews are usually held with the team or scrum master to better explain the addition. The traditional way is to meet and work through explaining every critical section of code, but doing this through pull requests is also acceptable.
 
 ## Pull Requests
 Pull requests (PRs) exist as a way to review a development branch before merging into a stable branch. When the author of the development branch is finished with a part, they open a request through GitHub. They specify which branch they'd like to merge into and describe the changes they made.
