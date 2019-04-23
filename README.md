@@ -4,7 +4,9 @@
 
 For most of our professional careers in the industry, we work on projects alongside many individuals. Everyone has their own style of coding, like choosing between tabs or spaces. While agreeing on a certain convention is nice, efficient project workflow is an important methodology to follow. When working on a project with a team (like the upcoming R'Shell), it's important to communicate what part is currently being worked on.
 
-Many [Git workflows](https://www.endpoint.com/blog/2014/05/02/git-workflows-that-work) exist today, and they all have their pros and cons. However, GitHub flow is one of the simplest to learn and is our preferred method. A brief overview of GitHub flow can be found [here](https://guides.github.com/introduction/flow/).
+Many [Git workflows](https://www.endpoint.com/blog/2014/05/02/git-workflows-that-work) exist today, and they all have their pros and cons. However, GitHub flow is one of the simplest to learn and is our preferred method. A brief overview of GitHub flow is found in the diagram below..
+
+<img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/github-flow.png?raw=true" width="600">
 
 ## The Importance of Effective Branching
 In the Git lab, we learned that branching is used when developers want to change code without having conflicts commit after commit. When working on a team, it is wise to separate what someone is working on by making a branch unique to that addition or edit. When that team member finishes their part, they can then merge back into the master or main development branch.
