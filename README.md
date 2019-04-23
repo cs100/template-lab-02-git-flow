@@ -6,7 +6,7 @@ For most of our professional careers in the industry, we work on projects alongs
 
 Many [Git workflows](https://www.endpoint.com/blog/2014/05/02/git-workflows-that-work) exist today, and they all have their pros and cons. However, GitHub flow is one of the simplest to learn and is our preferred method. A brief overview of GitHub flow is found in the diagram below..
 
-<img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/github-flow.png?raw=true" width="600">
+<img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/github-flow.png?raw=true" width="1000">
 
 Source: [GitHub Guides](https://guides.github.com/introduction/flow/)
 
