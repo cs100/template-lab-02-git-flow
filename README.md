@@ -71,14 +71,6 @@ int main() {
 }
 ```
 
-### Issue Tracking
-
-This is a good time to learn about the Issues tab under every GitHub repository. 
-
-We see that Partner 1 added the fibonacci function, but there is no way to use it in main. Let's fix that! 
-
-Partner 2 should go to the Issues tab and open a new issue. Title it "Fibonacci Not Outputting". On the right, assign Partner 2 (through their GitHub) and label the issue "invalid". Add a description you see fit, then submit the issue. We'll come back to this later.
-
 ### The Second Branch
 
 Partner 2 should add the following user prompt in the main function in `main.cpp`:
