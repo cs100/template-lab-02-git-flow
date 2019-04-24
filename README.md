@@ -115,9 +115,7 @@ Let's try doing this now. Both partners should open up their GitHub repository t
 
 ### Creating a Pull Request
 
-Partner 1 should press on the branch dropdown menu and select `<partner-1-github-username>/add-fib-func`. Next, click on "New pull request". This will bring up the editing screen for the PR. Title it `Fibonacci Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand. Next, added a reviewer by clicking on the "Reviewers" section to the right of the description box. Search Partner 2's username and click on their username. This will assign Partner 2 to review the PR. Under "Reviewers", click on "Assignees", then search and select Partner 1's username. This denotes that Partner 1 is in charge of the branch that is being pulled in. Under "Assignees", select "Labels" and choose "enhancement" (you can also create a custom label by clicking on "edit labels" on the bottom of the dropbown menu). 
-
-The rest of the sections, Projects and Milestones, don't need to be picked. Projects are useful for when developers need to split a large project into smaller projects, and Milestones are useful for agile development.
+Partner 1 should press on the branch dropdown menu and select `<partner-1-github-username>/add-fib-func`. Next, click on "New pull request". This will bring up the editing screen for the PR. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section. Search Partner 2's username and click on their username. This will assign Partner 2 to review the PR. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Fibonacci Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand.
 
 Once done finalizing the PR, click on "Create pull request".
 
