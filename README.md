@@ -25,8 +25,8 @@ Before we begin the lab, now is a good time to learn about the Issues tab under 
 Head over to the Issues tab. Currently, there aren't any open issues. Let's change that! Click on the green `New issue` button. On this page, you should notice some sections on the right. They are
 * Assignees - the developer assigned to the issue, whether to work on a new feature or to fix a bug. Keep in mind that more than one person can be assigned to the same issue.
 * Labels - the category the issue falls under. There are a few ones that GitHub lists, and you are also welcome to add any custom labels you see fit. We recommend adding priority labels (low, medium, high) so issues can be addressed based on importance.
-* Projects - which project this issue falls under. This is useful when a repository has multiple ongoing projects.
-* Milestone - which milestone this issue falls under. This is similar to Projects, except milestones are usually associated with specific sprints.
+* Projects - which project this issue falls under. If using the Projects feature, it is possible to to automatically add issues to a project's Kanban board. For more information about this automation, click [here](https://help.github.com/en/articles/configuring-automation-for-project-boards).
+* Milestone - which milestone this issue falls under. This is similar to Projects, except milestones are usually associated with specific sprints and track completion of issues towards a particular feature or release.
 
 Let's create an issue for adding a Fibonacci function. Assign this to both you and your partner, and label it is an "enhancement". Don't worry about selecting Projects or Milestone for this lab, but note that on large repositories it can be useful.
 
@@ -105,11 +105,10 @@ Each partner should also refresh their local git by running `git fetch`. This wi
 Before merging the branches, it is good practice to open a pull request that can be reviewed by your team members.
 
 ## Code Reviews
-
 Throughout development, team members will most likely be working on integrating features into existing code. To help understand what is being added, code reviews are usually held with the team or scrum master to better explain the addition. The traditional way is to meet and work through explaining every critical section of code, but doing this through pull requests is also acceptable.
 
 ## Pull Requests
-Pull requests (PRs) exist as a way to review a development branch before merging into a stable branch. When the author of the development branch is finished with a part, they open a request through GitHub. They specify which branch they'd like to merge into and describe the changes they made.
+The pull request system allows for maintainers of repositories to block changes from being added to certain branches until they meet specific requirements such as having a minimum number of approved code reviews and successfully passing automated tests. By having GitHub enforce these rules for us before our stable branches (like master) can have code added to them we greatly increase the changes that our stable branches will continue to be stable.
 
 Let's try doing this now. Both partners should open up their GitHub repository to prepare the PR. 
 
