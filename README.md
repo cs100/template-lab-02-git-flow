@@ -28,15 +28,27 @@ Head over to the Issues tab. Currently, there aren't any open issues. Let's chan
 * Projects - which project this issue falls under. If using the Projects feature, it is possible to to automatically add issues to a project's Kanban board. For more information about this automation, click [here](https://help.github.com/en/articles/configuring-automation-for-project-boards).
 * Milestone - which milestone this issue falls under. This is similar to Projects, except milestones are usually associated with specific sprints and track completion of issues towards a particular feature or release.
 
-Let's start two issues for today's lab: creating a count function and creating a unit test for it. Decide which partner will do what part, then create it! Make sure to assign each issue to their respective partners. For creating a count function, choose the "enhancement" label. For the unit test, choose the "unit test" label.
+Let's start two issues for today's lab: creating a count function and creating a unit test for it. Decide which partner will do what part. Throughout the remainder of the lab, Partner 1 will be working on the count function and Partner 2 will be creating the unit test. Go ahead and create these issues now, making sure to assign each issue to their respective partners. For creating a count function, choose the "enhancement" label. For the unit test, choose the "unit test" label.
 
 > Note: If the "unit test" label doesn't exist, click on "Edit labels" and then "New label" at the top right and add it.
 
 Don't worry about selecting Projects or Milestone for this lab, but note that on large repositories they can be useful.
 
-[//]: # (We see that Partner 1 added the fibonacci function, but there is no way to use it in main. Let's fix that!)
+## Copying Files from the Bash Lab
 
-[//]: # (Partner 2 should go to the Issues tab and open a new issue. Title it "Fibonacci Not Outputting". On the right, assign Partner 2 and label the issue "invalid". Add a description you see fit, then submit the issue. We'll come back to this later.)
+Did you think we were done adding issues? Nope! ( ͡° ͜ʖ ͡°) 
+
+We should probably add one for copying some necessary files over from the bash lab. Go ahead and do so now, assigning the issue to both partners and giving it an "enhancement" label.
+
+Since this is an extension of the previous lab, let's copy some necessary files over. Hopefully, you are working on the machine you used for the bash lab, whether it be hammer or a local environment. Make sure that both the bash lab's directory and this lab's directory are on the same level of hierarchy (located in the same directory). Go ahead and use the `cp` command to copy the following files over to this lab's directory. From the bash lab directory, run the following command:
+
+```
+cp c-echo.h test.cpp CMakeLists.txt ../<this lab's directory name>
+```
+
+Three files should now be located in this lab's directory. 
+
+Go ahead and git add, commit, and push these three files. You're now ready to close your first issue!
 
 ## The Importance of Effective Branching
 In the Git lab, we learned that branching is used when developers want to change code without having conflicts commit after commit. When working on a team, it is wise to separate what someone is working on by making a branch unique to that addition or edit. When that team member finishes their part, they can then merge back into the master or main development branch.
@@ -44,8 +56,8 @@ In the Git lab, we learned that branching is used when developers want to change
 Each partner should now create a branch from the master branch. Both partners should title their branches as such, respectively:
 
 ```
-$ git branch <partner-1-github-username>/add-fib-func
-$ git branch <partner-2-github-username>/add-main-prompt
+$ git branch <partner-1-github-username>/count-func
+$ git branch <partner-2-github-username>/count-test
 ```
 
 Make sure to checkout the branches after creating them.
