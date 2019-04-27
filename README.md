@@ -1,6 +1,6 @@
 # GitHub Flow
 
-> Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla))
+> Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla)) and Brian Crites ([@brrcrites]())
 
 For most of your professional careers in industry, you will work on projects alongside other contributors. In order to reduce the friction that can occur between developers with different backgrounds, styles, and opinions most companies, organizations, and projects dictate their preferred style and method of contribution. Dictating a preferred style gives your codebase a consistent look and makes it easier for developers to understand since things are done in a consistent manner. Having a preferred method of contribution, or workflow, makes sure that different contributors know who is working on what and enforce that their contribution meets the standards set out by the organization. Having a good workflow is an important step to make sure your organziation (or for this course, your team) is working efficiently to create well tested and high quality code.
 
@@ -11,28 +11,33 @@ Many [git workflows](https://www.endpoint.com/blog/2014/05/02/git-workflows-that
 Source: [GitHub Guides](https://guides.github.com/introduction/flow/)
 
 The goal of this lab is to get you more comfortable using Git and GitHub when working on a team. You and your partner will work on extending the Bash Unit Testing lab by adding a count function, along with unit tests for it. By the end of this lab, you should be familiar with
-* how issues are made and managed
-* how to properly use branches
-* how to create, review, and merge pull requests
+
+* how to create issues to manage tasks
+* how to use branches to reduce conflicts
+* how to use pull requests to review and merge changes
 * how to tackle merge conflicts
 * how to tag releases
 * how to revert to previous commits
 
 ## Issue Tracking
 
-Before we begin the lab, now is a good time to learn about the Issues tab under every GitHub repository. Issues are useful to keep track of bugs that appear in projects, and are also used for tracking work that still needs to be done. 
+The first thing we are going to do is use the built-in GitHub issue system to track and manage tasks. Issues are useful to keep track of bugs that appear in projects as well as tracking work that still needs to be done. 
 
-Head over to the Issues tab. Currently, there aren't any open issues. Let's change that! Click on the green `New issue` button. On this page, you should notice some sections on the right. They are
-* Assignees - the developer assigned to the issue, whether to work on a new feature or to fix a bug. Keep in mind that more than one person can be assigned to the same issue.
-* Labels - the category the issue falls under. There are a few ones that GitHub lists, and you are also welcome to add any custom labels you see fit. We recommend adding priority labels (low, medium, high) so issues can be addressed based on importance.
-* Projects - which project this issue falls under. If using the Projects feature, it is possible to to automatically add issues to a project's Kanban board. For more information about this automation, click [here](https://help.github.com/en/articles/configuring-automation-for-project-boards).
+In GitHub each repository has its own associated set of issues, which are located under the `Issues` tab near the top of the repository. Currently, there aren't any open issues for this lab, so let's add some. Click on the green `New issue` button. On this page, you should notice some sections on the right. They are:
+
+* Assignees - the developer assigned to the task, who will recieve email alerts when comments are made on the issue. Keep in mind that more than one person can be assigned to the same issue, especially when they require some discussion.
+* Labels - help to categorize the types of tasks that need to be completed. GitHub will autopopulate a list of tags for your repo, but you are free to edit or remove them as you see fit. We recommend using a basic set of `bug`, `test`, and `develop` tags to start with, and adding more as needed. GitHub tags can range from [relatively small and simple sets](https://medium.com/@dave_lunny/sane-github-labels-c5d2e6004b63) to [large hierarchies of color coded tags](https://robinpowered.com/blog/best-practice-system-for-organizing-and-tagging-github-issues/).
+* Projects - which project this issue falls under. Projects are typically used to split the issues across teams or large features, and for this course we recommend you just have a single TODO project if you use it at all. If you are using the Projects feature, it is possible to to have issues automatically added to a project's Kanban board. [You can read this link for more information](https://help.github.com/en/articles/configuring-automation-for-project-boards).
 * Milestone - which milestone this issue falls under. This is similar to Projects, except milestones are usually associated with specific sprints and track completion of issues towards a particular feature or release.
 
-Let's start two issues for today's lab: creating a count function and creating a unit test for it. Decide which partner will do what part. Throughout the remainder of the lab, Partner 1 will be working on the count function and Partner 2 will be creating the unit test. Go ahead and create these issues now, making sure to assign each issue to their respective partners. For creating a count function, choose the "enhancement" label. For the unit test, choose the "unit test" label.
+Let's start by creating two issues for today's lab, with each partner creating one of the issues. Here we have listed the title is in bold followed by the text for the body of the issue. Note that you can use markup in the body of your issues which we encourage you to do.
 
-> Note: If the "unit test" label doesn't exist, click on "Edit labels" and then "New label" at the top right and add it.
+* **Create a character counting function**: Add a function to `main.cpp` which counts the number of characters input from the user
+* **creating a character counting unit test**: Create unit tests for the character count function
 
-Don't worry about selecting Projects or Milestone for this lab, but note that on large repositories they can be useful.
+Throughout the remainder of the lab, Partner 1 will be working on the count function and Partner 2 will be creating the unit test, so make sure to set the assignees according to who will be completing which portion. For creating a count function, choose the "enhancement" label. For the unit test, choose the "unit test" label. Don't worry about selecting Projects or Milestone for this lab.
+
+> Note: If the "enhancement" or "unit test" label doesn't exist, click on "Edit labels" and then "New label" at the top right and add it.
 
 ## Copying Files from the Bash Lab
 
