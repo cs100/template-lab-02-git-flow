@@ -10,7 +10,7 @@ Many [Git workflows](https://www.endpoint.com/blog/2014/05/02/git-workflows-that
 
 Source: [GitHub Guides](https://guides.github.com/introduction/flow/)
 
-The goal of this lab is to get you more comfortable using Git and GitHub when working on a team. You and your partner will work on integrating a basic Fibonacci function in the provided `main.cpp`. By the end of this lab, you should be familiar with
+The goal of this lab is to get you more comfortable using Git and GitHub when working on a team. You and your partner will work on extending the Bash Unit Testing lab by adding a count function, along with unit tests for it. By the end of this lab, you should be familiar with
 * how issues are made and managed
 * how to properly use branches
 * how to create, review, and merge pull requests
@@ -28,7 +28,11 @@ Head over to the Issues tab. Currently, there aren't any open issues. Let's chan
 * Projects - which project this issue falls under. If using the Projects feature, it is possible to to automatically add issues to a project's Kanban board. For more information about this automation, click [here](https://help.github.com/en/articles/configuring-automation-for-project-boards).
 * Milestone - which milestone this issue falls under. This is similar to Projects, except milestones are usually associated with specific sprints and track completion of issues towards a particular feature or release.
 
-Let's create an issue for adding a Fibonacci function. Assign this to both you and your partner, and label it is an "enhancement". Don't worry about selecting Projects or Milestone for this lab, but note that on large repositories it can be useful.
+Let's start two issues for today's lab: creating a count function and creating a unit test for it. Decide which partner will do what part, then create it! Make sure to assign each issue to their respective partners. For creating a count function, choose the "enhancement" label. For the unit test, choose the "unit test" label.
+
+> Note: If the "unit test" label doesn't exist, click on "Edit labels" and then "New label" at the top right and add it.
+
+Don't worry about selecting Projects or Milestone for this lab, but note that on large repositories they can be useful.
 
 [//]: # (We see that Partner 1 added the fibonacci function, but there is no way to use it in main. Let's fix that!)
 
