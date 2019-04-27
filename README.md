@@ -43,17 +43,15 @@ Throughout the remainder of the lab, Partner 1 will be working on the count func
 
 Did you think we were done adding issues? Nope! ( ͡° ͜ʖ ͡°) 
 
-We should probably add one for copying some necessary files over from the bash lab. Go ahead and do so now, assigning the issue to both partners and giving it an "enhancement" label.
+This lab will be extending the work you did in the Bash and Unit Tests lab. Create an issue for initializing the repository with the previous labs files (you should choose a good title and description) and assigning the issue to both partners along with an "enhancement" label.
 
-Since this is an extension of the previous lab, let's copy some necessary files over (pick one partner to do this). Hopefully, you are working on the machine you used for the bash lab, whether it be hammer or a local environment. Make sure that both the bash lab's directory and this lab's directory are on the same level of hierarchy (located in the same directory). Go ahead and use the `cp` command to copy the following files over to this lab's directory. From the bash lab directory, run the following command:
+Since this is an extension of the previous lab start by copying over the files from your Bash and Unit Testing lab (either partners files will be fine as long as they completed the Bash and Unit Testing lab). If you are working in a different environment than before or no longer have a local copy of your Bash and Unit Testing lab, re-clone it to your machine before proceding (but don't clone it into this labs folder). Make sure that both the Bash and Unit Testing lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Bash and Unit Testing lab's directory and use the `cp` command to copy the following files into this labs directory.
 
 ```
-cp c-echo.h test.cpp CMakeLists.txt main.cpp ../<this lab's directory name>
+cp c-echo.h test.cpp CMakeLists.txt main.cpp ../<this-labs-directory>
 ```
 
-Four new files should now be located in this lab's directory. Make sure to also run `git submodule add https://github.com/google/googletest.git` to add the Google Testing framework.
-
-Go ahead and git add, commit, and push these four files. You're now ready to close your first issue!
+Four new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them). Make sure to also run `git submodule add https://github.com/google/googletest.git` to add the Google Testing framework. Go ahead and git add, commit, and push these four files and you'll be ready to close your first issue!
 
 ## The Importance of Effective Branching
 
