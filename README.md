@@ -32,8 +32,8 @@ In GitHub each repository has its own associated set of issues, which are locate
 
 Let's start by creating two issues for today's lab, with each partner creating one of the issues. Here we have listed the title is in bold followed by the text for the body of the issue. Note that you can use markup in the body of your issues which we encourage you to do.
 
-* **Create a character counting function**: Add a function to `main.cpp` which counts the number of characters input from the user
-* **creating a character counting unit test**: Create unit tests for the character count function
+* **Create a word counting function**: Add a function to `main.cpp` which counts the number of words input from the user
+* **creating a word counting unit test**: Create unit tests for the word count function
 
 Throughout the remainder of the lab, Partner 1 will be working on the count function and Partner 2 will be creating the unit test, so make sure to set the assignees according to who will be completing which portion. For creating a count function, choose the "enhancement" label. For the unit test, choose the "unit test" label. Don't worry about selecting Projects or Milestone for this lab.
 
@@ -55,7 +55,7 @@ Four new files should now be located in this lab's directory (you will have to n
 
 ## The Importance of Effective Branching
 
-In the Git lab, we learned that branching is used when developers want to change code without having conflicts commit after commit. When working on a team, it is wise to separate what someone is working on by making a branch unique to that addition or edit. When that team member finishes their part, they can then merge back into the master or main development branch.
+In the Git lab, you learned that branching is used when developers want to change code without having to deal with conflicts between other contributors. When working on a team, it is wise to separate what each person is working on (and often each feature that person is working on) by making a branch unique to that change or set of changes. When that team member finishes their part, they can then merge back into the master or main development branch to signify that it is complete and should be part of the code everyone uses moving forward.
 
 Before branching, let's do some preliminary work. For the purpose of a future exercise, one partner should create a file named `c-count.h` and add the following code.
 
@@ -72,9 +72,9 @@ $ git branch <partner-1-github-username>/count-func
 $ git branch <partner-2-github-username>/count-test
 ```
 
-**Make sure to checkout the branches right after creating them.**
+You should prepend your branch with your username to make it easy to see who owns which branch and to avoid naming conflicts between individual contributors branches. After you have each created your individual branch, **it is very important** that you change to that branch with `git checkout <branch-name>`
 
-### The First Branch
+### The First Branch (Partner 1)
 
 Partner 1 should add the following count function to `c-count.h`:
 
@@ -100,7 +100,7 @@ unsigned int count(const std::string& str) {
 
 This function counts the number of words in a string, delimited by whitespace. It takes a string and iterates through every character. When whitespace is encountered, a flag gets set. If the next character doesn't contain whitespace, the counter is incremented and the flag is unset.
 
-### The Second Branch
+### The Second Branch (Partner 2)
 
 Partner 2 should add the following unit tests to `test.cpp`:
 
@@ -156,8 +156,6 @@ Let's say you didn't know your partner was editing the same file in another bran
 
 // count function still needs to go here
 ```
-
-Uh-oh, Partner 2. Looks like you are the catalyst for a possible merge conflict! Not to worry. Git provides a nice way to review merge conflicts, which we will discuss in a future section.
 
 ### The Push
 
