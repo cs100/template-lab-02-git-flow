@@ -154,18 +154,17 @@ Let's say you didn't know your partner was editing the same file in another bran
 // count function still needs to go here
 ```
 
+Uh-oh, Partner 2. Looks like you are the catalyst for a possible merge conflict! Not to worry. Git provides a nice way to review merge conflicts, which we will discuss in a future section.
+
 ### The Push
 
-Go ahead and commit and push these changes.
+Both partners should now commit and push these changes.
 
 > Aside: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
 
 Each partner should also refresh their local git by running `git fetch`. This will update your local repository so that the other partner's branch will show up.
 
 Before merging the branches, it is good practice to open a pull request that can be reviewed by your team members.
-
-## Code Reviews
-Throughout development, team members will most likely be working on integrating features into existing code. To help understand what is being added, code reviews are usually held with the team or scrum master to better explain the addition. The traditional way is to meet and work through explaining every critical section of code, but doing this through pull requests is also acceptable.
 
 ## Pull Requests
 The pull request system allows for maintainers of repositories to block changes from being added to certain branches until they meet specific requirements such as having a minimum number of approved code reviews and successfully passing automated tests. By having GitHub enforce these rules for us before our stable branches (like master) can have code added to them we greatly increase the changes that our stable branches will continue to be stable.
@@ -182,9 +181,25 @@ Partner 2 should follow the same steps above, except by selecting `<partner-2-gi
 
 ### Issue Tracking Strikes Back!
 
-Remember that issue you made? Go back to it and update it by writing `Fixed in #2` as a comment. #2 should hyperlink to the PR Partner 2 made that fixes that issue. Once that comment is made, go ahead and press on "Close issue".
+Remember that issue you made? There's a nifty way to close an issue without having to go to it directly and close it. 
 
-### Reviewing a Pull Request
+Both partner's should amend their latest commit message. Type the following to do so:
+
+```bash
+git commit --amend
+```
+
+This will open up your editor. The very top should contain your most recent commit message. Go ahead and change the message to `Fixed #<issue number>`.
+
+> The issue number can be found to the right of your issue's title (after the hashtag).
+
+Exit the editor, then push once more. Go to your PRs on GitHub. You'll notice that every commit made to a branch that has an open PR will show up. You should also notice that your commit message has a hyperlink. If you click on the number, it should send you to the specified issue. Once the PR is merged and closed, GitHub will take care of closing the issue for you automatically. Nice!
+
+### Reviewing a Pull Request / Code Reviews
+
+Throughout development, team members will most likely be working on integrating features into existing code. To help understand what is being added, code reviews are usually held with the team to better explain the addition. The traditional way is to meet and work through explaining every critical section of code, but doing this through pull requests is also acceptable.
+
+Review this [guide](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/) for some good practices for code reviews.
 
 Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and click on `Count Function`. From here, you can review comments made about the PR, all commits associated with that PR, and what changed within the files.
 
@@ -195,24 +210,41 @@ Partner 1 should navigate to the "Pull requests" tab and click on `Count Unit Te
 <img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/resolve-conflicts.png?raw=true" width="600">
 
 #### Fixing a Merge Conflict
-Let's resolve that now. Partner 1 should go back to their local environment and type `git fetch origin` to fetch and store all the remote updates locally. Next, type `git checkout -b <partner-1-github-username>/count-func origin/<partner-1-github-username>/count-func`, which will copy Partner 2's remote branch into a new local branch and check it out. Finally, type `git merge master` to merge the current branch you checked out into master. You should see something like below:
+
+Let's resolve that now. Partner 1 should type the following commands:
+
+```bash
+git checkout master
+git pull
+git checkout <partner-2-github-username>/count-test
+```
+
+This will update any changes made to master, then checkout Partner 2's branch.
+
+Finally, type `git merge master` to merge the current branch you checked out into master. You should see something like below:
 
 ```
-Auto-merging main.cpp
-CONFLICT (content): Merge conflict in main.cpp
+Auto-merging c-count.h
+CONFLICT (content): Merge conflict in c.count.h
 Automatic merge failed; fix conflicts and then commit the result.
 ```
-If you open `main.cpp` in a text editor, you should see some lines that include `<<<<<<< HEAD`, `=======`, and `>>>>>>> master`. 
+If you open `c-count.h` in a text editor, you should see some lines that include `<<<<<<< HEAD`, `=======`, and `>>>>>>> master`. 
 
 <img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/conflict.jpg?raw=true" width="600">
 
 Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in from the branch being merged, while everything past `=======` and before `>>>>>>> master` is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete everything past `=======` and before `>>>>>>> master`. Make sure to also delete these indicators, or you will get obvious compilation errors.
 
+> Aside: While this merge was relatively straight-forward and we just wanted to accept what was in master, there are times when you will need to merge both branches in order to get what you actually want. This may lead to additional errors, so its always important to test the code to make sure it's still working after a merge has been resolved.
+
 Once you are done, be sure to commit and push as usual.
 
-> Aside: To commit a merge, simply typing `git commit` without the `-m` flag will automatically populate a merge message.
+Note that when committing a merge, simply typing `git commit` without the `-m` flag will automatically populate a merge message.
 
-Partner 1 should now refresh the `Count Unit Test` PR on GitHub. Notice that every commit made in the branch should appear within the PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process as stated above.
+Partner 1 should now refresh the `Count Unit Test` PR on GitHub. Notice that every commit made in the branch should appear within the PR. 
+
+Using the good practices for code reviews reference above, make sure everything looks good with this PR.
+
+There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process as stated above.
 
 ## Tagging
 
