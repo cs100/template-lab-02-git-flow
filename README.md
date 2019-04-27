@@ -40,79 +40,123 @@ Did you think we were done adding issues? Nope! ( ͡° ͜ʖ ͡°)
 
 We should probably add one for copying some necessary files over from the bash lab. Go ahead and do so now, assigning the issue to both partners and giving it an "enhancement" label.
 
-Since this is an extension of the previous lab, let's copy some necessary files over. Hopefully, you are working on the machine you used for the bash lab, whether it be hammer or a local environment. Make sure that both the bash lab's directory and this lab's directory are on the same level of hierarchy (located in the same directory). Go ahead and use the `cp` command to copy the following files over to this lab's directory. From the bash lab directory, run the following command:
+Since this is an extension of the previous lab, let's copy some necessary files over (pick one partner to do this). Hopefully, you are working on the machine you used for the bash lab, whether it be hammer or a local environment. Make sure that both the bash lab's directory and this lab's directory are on the same level of hierarchy (located in the same directory). Go ahead and use the `cp` command to copy the following files over to this lab's directory. From the bash lab directory, run the following command:
 
 ```
-cp c-echo.h test.cpp CMakeLists.txt ../<this lab's directory name>
+cp c-echo.h test.cpp CMakeLists.txt main.cpp ../<this lab's directory name>
 ```
 
-Three files should now be located in this lab's directory. 
+Four new files should now be located in this lab's directory. Make sure to also run `git submodule add https://github.com/google/googletest.git` to add the Google Testing framework.
 
-Go ahead and git add, commit, and push these three files. You're now ready to close your first issue!
+Go ahead and git add, commit, and push these four files. You're now ready to close your first issue!
 
 ## The Importance of Effective Branching
+
 In the Git lab, we learned that branching is used when developers want to change code without having conflicts commit after commit. When working on a team, it is wise to separate what someone is working on by making a branch unique to that addition or edit. When that team member finishes their part, they can then merge back into the master or main development branch.
 
-Each partner should now create a branch from the master branch. Both partners should title their branches as such, respectively:
+Before branching, let's do some preliminary work. For the purpose of a future exercise, one partner should create a file named `c-count.h` and add the following code.
+
+```c++
+#include <iostream>
+
+// count function should go here
+```
+
+Once you commit and push the above change, each partner should now create a branch from the master branch. Both partners should title their branches as such, respectively:
 
 ```
 $ git branch <partner-1-github-username>/count-func
 $ git branch <partner-2-github-username>/count-test
 ```
 
-Make sure to checkout the branches after creating them.
+**Make sure to checkout the branches right after creating them.**
 
 ### The First Branch
 
-We have provided a `main.cpp` file for editing.
-
-Partner 1 should add the following exchange to the main function in `main.cpp`:
+Partner 1 should add the following count function to `c-count.h`:
 
 ```c++
 #include <iostream>
 
-using namespace std;
-
-int fibonacci(int n) {
-    if (n <= 1)
-        return n;
-    return fibonacci(n-1) + fibonacci(n-2);
-}
-
-int main() {
-    cout << "We should probably have a prompt for the function here." << endl;
-    cout << "Leaving this job for Partner 2. Have fun!" << endl;
+unsigned int count(const std::string& str) {
+    unsigned int counter = 0;
+    bool on_space = true;
     
-    return 0;
+    for(int i = 0; i < str.size(); i++) {
+        if (std::isspace(str[i]))
+            on_space = true;
+        else if (on_space) {
+            counter++;
+            on_space = false;
+        }
+    }
+
+    return counter;
 }
 ```
+
+This function counts the number of words in a string, delimited by whitespace. It takes a string and iterates through every character. When whitespace is encountered, a flag gets set. If the next character doesn't contain whitespace, the counter is incremented and the flag is unset.
 
 ### The Second Branch
 
-Partner 2 should add the following user prompt in the main function in `main.cpp`:
+Partner 2 should add the following unit tests to `test.cpp`:
+
+```c++
+#include "c-echo.h"
+#include "c-count.h"
+
+#include "gtest/gtest.h"
+
+TEST(EchoTest, HelloWorld) {
+    char* test_val[3]; test_val[0] = "./c-echo"; test_val[1] = "hello"; test_val[2] = "world";
+    EXPECT_EQ("hello world", echo(3,test_val));
+}
+
+TEST(EchoTest, EmptyString) {
+    char* test_val[1]; test_val[0] = "./c-echo";
+    EXPECT_EQ("", echo(1, test_val));
+}
+
+TEST(CountTest, HelloWorld) {
+    std::string test_str = "hello world";
+    EXPECT_EQ(2, count(test_str));
+}
+
+TEST(CountTest, EmptyString) {
+    std::string test_str = "";
+    EXPECT_EQ(0, count(test_str));
+}
+
+TEST(CountTest, ManySpaces) {
+    std::string test_str = "   this   string has     weird   spacing";
+    EXPECT_EQ(5, count(test_str));
+}
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+```
+
+One more thing, Partner 2. Your `c-count.h` should still look like below:
 
 ```c++
 #include <iostream>
 
-using namespace std;
-
-int fibonacci(int n) {
-    if (n <= 1)
-        return n;
-    return fibonacci(n-1) + fibonacci(n-2);
-}
-
-int main() {
-    int n;
-    cout << "Please enter a number: ";
-    cin >> n;
-    cout << "The nth term of the fibonacci sequence is " << fibonacci(n) << endl;
-    
-    return 0;
-}
+// count function should go here
 ```
 
-Commit and push your changes to your respective branches.
+Let's say you didn't know your partner was editing the same file in another branch. Let's edit it like so:
+
+```c++
+#include <iostream>
+
+// count function still needs to go here
+```
+
+### The Push
+
+Go ahead and commit and push these changes.
 
 > Aside: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
 
@@ -130,11 +174,11 @@ Let's try doing this now. Both partners should open up their GitHub repository t
 
 ### Creating a Pull Request
 
-Partner 1 should press on the branch dropdown menu and select `<partner-1-github-username>/add-fib-func`. Next, click on "New pull request". This will bring up the editing screen for the PR. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section. Search Partner 2's username and click on their username. This will assign Partner 2 to review the PR. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Fibonacci Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand.
+Partner 1 should press on the branch dropdown menu and select `<partner-1-github-username>/count-func`. Next, click on "New pull request". This will bring up the editing screen for the PR. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section. Search Partner 2's username and click on their username. This will assign Partner 2 to review the PR. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Count Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand.
 
 Once done finalizing the PR, click on "Create pull request".
 
-Partner 2 should follow the same steps above, except by selecting `<partner-2-github-username>/add-main-prompt` from the branch dropdown menu. Also, title it `Main Prompt`. Make sure to choose Partner 1 as the reviewer and Partner 2 as the assignee.
+Partner 2 should follow the same steps above, except by selecting `<partner-2-github-username>/count-test` from the branch dropdown menu. Also, title it `Count Unit Test`. Make sure to choose Partner 1 as the reviewer and Partner 2 as the assignee.
 
 ### Issue Tracking Strikes Back!
 
@@ -142,16 +186,16 @@ Remember that issue you made? Go back to it and update it by writing `Fixed in #
 
 ### Reviewing a Pull Request
 
-Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and click on `Fibonacci Function`. From here, you can review comments made about the PR, all commits associated with that PR, and what changed within the files.
+Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and click on `Count Function`. From here, you can review comments made about the PR, all commits associated with that PR, and what changed within the files.
 
-Near the bottom, you should see a green checkmark. This means GitHub found no possible merge conflicts. Go ahead and press "Merge pull request". This completes the merge from the `<partner-1-github-username>/add-fib-func` branch to the master branch. You are now given the option to delete the branch. It's nice to keep repositories neat and tidy, so go ahead and delete the branch.
+Near the bottom, you should see a green checkmark. This means GitHub found no possible merge conflicts. Go ahead and press "Merge pull request". This completes the merge from the `<partner-1-github-username>/count-func` branch to the master branch. You are now given the option to delete the branch. It's nice to keep repositories neat and tidy, so go ahead and delete the branch.
 
-Partner 1 should navigate to the "Pull requests" tab and click on `Main Prompt`. Unlike the first PR, this one has a merge conflict.
+Partner 1 should navigate to the "Pull requests" tab and click on `Count Unit Test`. Unlike the first PR, this one has a merge conflict.
 
 <img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/resolve-conflicts.png?raw=true" width="600">
 
 #### Fixing a Merge Conflict
-Let's resolve that now. Partner 1 should go back to their local environment and type `git fetch origin` to fetch and store all the remote updates locally. Next, type `git checkout -b <partner-1-github-username>/add-main-prompt origin/<partner-1-github-username>/add-main-prompt`, which will copy Partner 2's remote branch into a new local branch and check it out. Finally, type `git merge master` to merge the current branch you checked out into master. You should see something like below:
+Let's resolve that now. Partner 1 should go back to their local environment and type `git fetch origin` to fetch and store all the remote updates locally. Next, type `git checkout -b <partner-1-github-username>/count-func origin/<partner-1-github-username>/count-func`, which will copy Partner 2's remote branch into a new local branch and check it out. Finally, type `git merge master` to merge the current branch you checked out into master. You should see something like below:
 
 ```
 Auto-merging main.cpp
@@ -168,7 +212,7 @@ Once you are done, be sure to commit and push as usual.
 
 > Aside: To commit a merge, simply typing `git commit` without the `-m` flag will automatically populate a merge message.
 
-Partner 1 should now refresh the `Main Prompt` PR on GitHub. Notice that every commit made in the branch should appear within the PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process as stated above.
+Partner 1 should now refresh the `Count Unit Test` PR on GitHub. Notice that every commit made in the branch should appear within the PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process as stated above.
 
 ## Tagging
 
