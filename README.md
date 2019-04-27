@@ -98,7 +98,7 @@ int main() {
 
 Commit and push your changes to your respective branches.
 
-> Note: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
+> Aside: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
 
 Each partner should also refresh their local git by running `git fetch`. This will update your local repository so that the other partner's branch will show up.
 
@@ -149,6 +149,8 @@ If you open `main.cpp` in a text editor, you should see some lines that include 
 Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in from the branch being merged, while everything past `=======` and before `>>>>>>> master` is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete everything past `=======` and before `>>>>>>> master`. Make sure to also delete these indicators, or you will get obvious compilation errors.
 
 Once you are done, be sure to commit and push as usual.
+
+> Aside: To commit a merge, simply typing `git commit` without the `-m` flag will automatically populate a merge message.
 
 Partner 1 should now refresh the `Main Prompt` PR on GitHub. Notice that every commit made in the branch should appear within the PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process as stated above.
 
