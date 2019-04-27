@@ -2,9 +2,9 @@
 
 > Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla))
 
-For most of our professional careers in the industry, we work on projects alongside many individuals. Everyone has their own style of coding, like choosing between tabs or spaces. While agreeing on a certain convention is nice, efficient project workflow is an important methodology to follow. When working on a project with a team (like the upcoming R'Shell), it's important to communicate what part is currently being worked on.
+For most of your professional careers in industry, you will work on projects alongside other contributors. In order to reduce the friction that can occur between developers with different backgrounds, styles, and opinions most companies, organizations, and projects dictate their preferred style and method of contribution. Dictating a preferred style gives your codebase a consistent look and makes it easier for developers to understand since things are done in a consistent manner. Having a preferred method of contribution, or workflow, makes sure that different contributors know who is working on what and enforce that their contribution meets the standards set out by the organization. Having a good workflow is an important step to make sure your organziation (or for this course, your team) is working efficiently to create well tested and high quality code.
 
-Many [Git workflows](https://www.endpoint.com/blog/2014/05/02/git-workflows-that-work) exist today and they all have their pros and cons. However, GitHub flow is one of the simplest to learn and is our preferred method. A brief overview of GitHub flow is found in the diagram below.
+Many [git workflows](https://www.endpoint.com/blog/2014/05/02/git-workflows-that-work) exist today and they all have their pros and cons. However, GitHub flow is one of the simplest to learn and is our preferred method for this course. A brief overview of GitHub flow is found in the diagram below.
 
 <img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/github-flow.png?raw=true" width="1000">
 
