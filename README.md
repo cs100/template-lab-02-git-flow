@@ -245,8 +245,6 @@ Near the bottom of the "Conversation" tab, you should see a green checkmark next
 
 Partner 1 should navigate to the "Pull requests" tab and select the `Count Unit Test` PR. Unlike the first PR, this one has a merge conflict and GitHub cannot merge it automatically.
 
-<img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/resolve-conflicts.png?raw=true" width="600">
-
 #### Fixing a Merge Conflict
 
 Let's resolve the merge conflict. Partner 1 should type the following commands which will change their current branch to master, update it to match what is on GitHub, and switch them back to their new branch:
