@@ -265,7 +265,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 If you open `c-count.h` in a text editor, you should see some lines that include `<<<<<<< HEAD`, `=======`, and `>>>>>>> master`. 
 
-<img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/conflict.jpg?raw=true" width="600">
+<img src="images/conflict.jpg?raw=true" width="600">
 
 Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in from the branch being merged, while everything past `=======` and before `>>>>>>> master` is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete everything past `=======` and before `>>>>>>> master`. Make sure to also delete these indicators, or you will get compilation errors.
 
