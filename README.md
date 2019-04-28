@@ -172,17 +172,21 @@ One more thing, Partner 2. Your `c-count.h` should still look like below:
 // count function should go here
 ```
 
-Let's say you didn't know your partner was editing the same file in another branch. To test the functionality of your unit test, you wrote a count function that simply returns 0
+Let's say you didn't know your partner was editing the same file in another branch. To test the functionality of your unit test, you should write a count function that always returns 0.
 
 ```c++
 #include <iostream>
 
-// count function still needs to go here
+int count(const std::string& phrase) {
+    return 0;
+}
 ```
+
+Partner 2 should now build and compile using `cmake3 .`, `make`, then run `./test`. You should see 2 tests fail, CountTest's HelloWorld and ManySpaces. EmptyString passes since we are returning 0 at all times.
 
 ### The Push
 
-Both partners should now commit and push these changes to their branches (if you haven't already)
+Both partners should now commit and push these changes to their branches (if you haven't already).
 
 > Note: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
 
