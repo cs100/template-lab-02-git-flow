@@ -48,10 +48,10 @@ This lab will be extending the work you did in the Bash and Unit Tests lab. Crea
 Since this is an extension of the previous lab start by copying over the files from your Bash and Unit Testing lab (either partners files will be fine as long as they completed the Bash and Unit Testing lab). If you are working in a different environment than before or no longer have a local copy of your Bash and Unit Testing lab, re-clone it to your machine before proceding (but don't clone it into this labs folder). Make sure that both the Bash and Unit Testing lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Bash and Unit Testing lab's directory and use the `cp` command to copy the following files into this labs directory.
 
 ```
-cp c-echo.h test.cpp CMakeLists.txt main.cpp ../<this-labs-directory>
+cp c-echo.h test.cpp CMakeLists.txt main.cpp .gitignore ../<this-labs-directory>
 ```
 
-Four new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them).
+Five new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them).
 
 Notice that the googletest directory is empty. If you recall the Bash lab, we spoke about needing a flag to download all submodules recursively. This can be done like so:
 
@@ -68,7 +68,7 @@ ADD_SUBDIRECTORY(googletest)
 
 SET(CMAKE__CXX_STANDARD 11)
 
-ADD_EXECUTABLE(c-echo c-count
+ADD_EXECUTABLE(c-echo-count
     main.cpp
 )
 
@@ -80,7 +80,18 @@ TARGET_LINK_LIBRARIES(test gtest)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
 ```
 
-Go ahead and git add, commit, and push these four files. You have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button which will convert that issue from open to closed, representing it has been completed.
+One last thing: let's change our .gitignore to reflect our additions:
+
+```
+c-echo-count
+
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+```
+
+Go ahead and git add, commit, and push these five files. You have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button which will convert that issue from open to closed, representing it has been completed.
 
 ## The Importance of Effective Branching
 
