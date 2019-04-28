@@ -86,17 +86,9 @@ Go ahead and git add, commit, and push these four files. You have now completed 
 
 In the Git lab, you learned that branching is used when developers want to change code without having to deal with conflicts between other contributors. When working on a team, it is wise to separate what each person is working on (and often each feature that person is working on) by making a branch unique to that change or set of changes. When that team member finishes their part, they can then merge back into the master or main development branch to signify that it is complete and should be part of the code everyone uses moving forward.
 
-Before branching, let's do some preliminary work. For the purpose of a future exercise, one partner should create a file named `c-count.h` and add the following code.
-
-```c++
-#include <iostream>
-
-// count function should go here
-```
-
 > Note: you should refer back to the links we provided in the git lab for creating good commit messages, however these are not the only good methods for commit messages. Lots of organizations have requirements on commit messages as they do reviews and style. Some of these try and categorize the commits such as the [gitmoji](https://gitmoji.carloscuesta.me/) system.
 
-Once you commit and push the above change, each partner should now create a branch from the master branch. Both partners should title their branches as such, respectively:
+Each partner should now create a branch from the master branch. Both partners should title their branches as such, respectively:
 
 ```
 $ git branch <partner-1-github-username>/count-func
@@ -107,7 +99,7 @@ You should prepend your branch with your username to make it easy to see who own
 
 ### The First Branch (Partner 1)
 
-Partner 1 should add the following count function to `c-count.h`:
+Partner 1 should add the following count function to the provided `c-count.h`:
 
 ```c++
 #include <iostream>
