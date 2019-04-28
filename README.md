@@ -41,7 +41,7 @@ Throughout the remainder of the lab, Partner 1 will be working on the count func
 
 ## Copying Files from the Bash Lab
 
-Did you think we were done adding issues? Nope! ( ͡° ͜ʖ ͡°) 
+Did you think we we're done adding issues? Nope! ( ͡° ͜ʖ ͡°) 
 
 This lab will be extending the work you did in the Bash and Unit Tests lab. Create an issue for initializing the repository with the previous labs files (you should choose a good title and description) and assigning the issue to both partners along with an "enhancement" label.
 
@@ -51,7 +51,15 @@ Since this is an extension of the previous lab start by copying over the files f
 cp c-echo.h test.cpp CMakeLists.txt main.cpp ../<this-labs-directory>
 ```
 
-Four new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them). Make sure to also run `git submodule add https://github.com/google/googletest.git` to add the Google Testing framework. Go ahead and git add, commit, and push these four files and you have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button which will convert that issue from open to closed, representing it has been completed.
+Four new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them).
+
+Notice that the googletest directory is empty. If you recall the Bash lab, we spoke about needing a flag to download all submodules recursively. This can be done like so:
+
+```bash
+git submodule update --init --recursive
+```
+
+Go ahead and git add, commit, and push these four files. You have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button which will convert that issue from open to closed, representing it has been completed.
 
 ## The Importance of Effective Branching
 
