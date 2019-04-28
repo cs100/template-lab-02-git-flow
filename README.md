@@ -59,6 +59,27 @@ Notice that the googletest directory is empty. If you recall the Bash lab, we sp
 git submodule update --init --recursive
 ```
 
+Since we are adding `c-count.h`, we should also update our `CMakeLists.txt` file in the `ADD_EXECUTABLE` field like so:
+
+```
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+ADD_SUBDIRECTORY(googletest)
+
+SET(CMAKE__CXX_STANDARD 11)
+
+ADD_EXECUTABLE(c-echo c-count
+    main.cpp
+)
+
+ADD_EXECUTABLE(test
+    test.cpp
+)
+
+TARGET_LINK_LIBRARIES(test gtest)
+TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
+```
+
 Go ahead and git add, commit, and push these four files. You have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button which will convert that issue from open to closed, representing it has been completed.
 
 ## The Importance of Effective Branching
@@ -159,7 +180,7 @@ One more thing, Partner 2. Your `c-count.h` should still look like below:
 // count function should go here
 ```
 
-Let's say you didn't know your partner was editing the same file in another branch. Let's edit it like so:
+Let's say you didn't know your partner was editing the same file in another branch. To test the functionality of your unit test, you wrote a count function that simply returns 0
 
 ```c++
 #include <iostream>
