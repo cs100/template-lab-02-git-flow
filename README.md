@@ -277,6 +277,43 @@ Once you are done, be sure to `git add` the file you just modified, commit it, a
 
 Using the good practices for code reviews reference above, make sure everything looks good with this PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process of deleting the branch as stated above.
 
+## Reverting Commits
+
+Throughout the development process, there are times where new commits may introduce problems in existing code. For these situations we can use git to revert the changes so our master is functional while we debug the issue on our own branch. This is very important for larger teams who might have contributors branching off of a broken master, leading to frustration when a developer thinks their changs are broken when really it was master that was broken.
+
+Uh-oh, we forgot about adding the function to `main.cpp`! Let's do that now. Flip a coin between Partner 1 and 2 to see who does so.
+
+```c++
+#include "c-echo.h"
+
+int main(int argv, char** argc) {
+    std::cout << "Count of output: " << count(echo(argv,argc)) << std::endl;
+}
+```
+
+You should be in the master branch, so go ahead and git add, commit, and push this change. Now try building using `cmake3 .` and `make`. Oops, looks like something broke! It seems that we forgot to add `#include "c-count.h"`.
+
+Let's fix this using reversion! To revert back to the last commit, type the following command.
+
+```
+git revert HEAD
+```
+
+This will create a new commit that is left off at the last commit. Let's add the main function once more, this time not forgetting `#include "c-count.h"`.
+
+```c++
+#include "c-echo.h"
+#include "c-count.h"
+
+int main(int argv, char** argc) {
+    std::cout << "Count of output: " << count(echo(argv,argc)) << std::endl;
+}
+```
+
+Please git add, commit, and push one more time.
+
+> Note: To revert to two or more commits down the chain, replace `HEAD` with the commit reference (the long string of characters that identify each commit that can be viewed using `git log`).
+
 ## Tagging
 
 Often, you’ll want to tag certain git commits because they are special. The most common reason to tag a commit in git is to tag it as a stable version, especially when using the [semantic versioning schemes](https://semver.org/). Let's assume that our code is now ready for release as `v1.0.0` and tag it as such.
@@ -288,15 +325,3 @@ $ git tag -a v1.0.0 -m “Initial stable release”
 The `-m` in this case works the same as it does when performing a commit, allowing us to add a message but bypassing the editor to do so. The `-m` flag will only allow you to set the title, so make sure to follow the 50 character commit title rule from the Git lab and only use it when no additional information would be necessary in the commit message body. If you wanted to tag a commit besides the current commit you would need to add the commit hash after the version number (but before the message). Normally a 1.0.0 release would have lots of additional notes on the current state of the software, but this is just an example. These tagged versions are stored in a special section of the repository on GitHub along with compressed versions of the source files to make public releases easier.
 
 > Note: It is possible to create both annotated tags using the `-a` flag and unannotated flags. Annotated flags carry additional information about their creation, so you **must** use them when adding a tag for your assignment.
-
-## Reverting Commits
-
-Throughout the development process, there are times where new commits may introduce problems in existing code. For these situations we can use git to revert the changes so our master is functional while we debug the issue on our own branch. This is very important for larger teams who might have contributors branching off of a broken master, leading to frustration when a developer thinks their changs are broken when really it was master that was broken.
-
-Let's say you push a commit that breaks something. To revert back to the last commit, type the following command.
-
-```
-git revert HEAD
-```
-
-This will create a new commit that is left off at the last commit. To revert to 2 or more commits down the chain, replace `HEAD` with the commit reference (the long string of characters that identify each commit that can be viewed using `git log`).
