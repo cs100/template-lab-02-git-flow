@@ -1,6 +1,6 @@
 # GitHub Flow
 
-> Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla)) and Brian Crites ([@brrcrites]())
+> Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla)) and Brian Crites ([@brrcrites](https://github.com/brrcrites))
 
 For most of your professional careers in industry, you will work on projects alongside other contributors. In order to reduce the friction that can occur between developers with different backgrounds, styles, and opinions most companies, organizations, and projects dictate their preferred style and method of contribution. Dictating a preferred style gives your codebase a consistent look and makes it easier for developers to understand since things are done in a consistent manner. Having a preferred method of contribution, or workflow, makes sure that different contributors know who is working on what and enforce that their contribution meets the standards set out by the organization. Having a good workflow is an important step to make sure your organziation (or for this course, your team) is working efficiently to create well tested and high quality code.
 
@@ -213,17 +213,16 @@ Partner 1 should navigate to the "Pull requests" tab and select the `Count Unit 
 
 #### Fixing a Merge Conflict
 
-Let's resolve that now. Partner 1 should type the following commands:
+Let's resolve the merge conflict. Partner 1 should type the following commands which will change their current branch to master, update it to match what is on GitHub, and switch them back to their new branch:
 
 ```bash
 git checkout master
 git pull
 git checkout <partner-2-github-username>/count-test
+git merge master
 ```
 
-This will update any changes made to master, then checkout Partner 2's branch.
-
-Finally, type `git merge master` to merge the current branch you checked out into master. You should see something like below:
+The last line will attempt to auto-merge master with the current branch, which we already know from GitHub will cause a conflict. You should see something like below:
 
 ```
 Auto-merging c-count.h
@@ -234,33 +233,29 @@ If you open `c-count.h` in a text editor, you should see some lines that include
 
 <img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/conflict.jpg?raw=true" width="600">
 
-Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in from the branch being merged, while everything past `=======` and before `>>>>>>> master` is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete everything past `=======` and before `>>>>>>> master`. Make sure to also delete these indicators, or you will get obvious compilation errors.
+Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in from the branch being merged, while everything past `=======` and before `>>>>>>> master` is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete everything past `=======` and before `>>>>>>> master`. Make sure to also delete these indicators, or you will get compilation errors.
 
-> Aside: While this merge was relatively straight-forward and we just wanted to accept what was in master, there are times when you will need to merge both branches in order to get what you actually want. This may lead to additional errors, so its always important to test the code to make sure it's still working after a merge has been resolved.
+> Note: while this merge was relatively straight-forward and we just wanted to accept what was in master, there are times when you will need to merge both branches in order to get what you actually want. This may lead to additional errors, so its always important to test the code to make sure it's still working after a merge has been resolved.
 
-Once you are done, be sure to commit and push as usual.
+Once you are done, be sure to `git add` the file you just modified, commit it, and push to GitHub. When committing a merge, simply typing `git commit` without the `-m` flag will automatically populate a merge message. Partner 1 should now refresh the `Count Unit Test` PR on GitHub. Notice that every commit made in the branch should appear within the PR automatically, so you don't need to close and re-open a PR if there are issues. PRs and the conversation and commit history associated with them can serve as valuable documentation about why certain design or coding decisions were made.
 
-Note that when committing a merge, simply typing `git commit` without the `-m` flag will automatically populate a merge message.
-
-Partner 1 should now refresh the `Count Unit Test` PR on GitHub. Notice that every commit made in the branch should appear within the PR. 
-
-Using the good practices for code reviews reference above, make sure everything looks good with this PR.
-
-There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process as stated above.
+Using the good practices for code reviews reference above, make sure everything looks good with this PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process of deleting the branch as stated above.
 
 ## Tagging
 
-Often, you’ll want to tag certain git commits because they are special. The most common reason to tag a commit in git is to tag it as a beta or release version, especially when using semantic versioning schemes. Let's assume that our code is now ready for release as a v1.0.0 and tag it as such.
+Often, you’ll want to tag certain git commits because they are special. The most common reason to tag a commit in git is to tag it as a stable version, especially when using the [semantic versioning schemes](https://semver.org/). Let's assume that our code is now ready for release as `v1.0.0` and tag it as such.
 
 ```
-$ git tag -a v1.0.0 -m “Initial release”
+$ git tag -a v1.0.0 -m “Initial stable release”
 ```
 
-The -m in this case works the same as it does when performing a commit, allowing us to add a message but bypassing the editor to do so. Note that if you wanted to tag a commit besides the current commit you would need to add the commit hash after the version number (but before the message). Normally a 1.0.0 release would have lots of additional notes on the current state of the software, but this is just an example. These tagged versions are stored in a special section of the repository on GitHub along with compressed versions of the source files to make public releases easier.
+The `-m` in this case works the same as it does when performing a commit, allowing us to add a message but bypassing the editor to do so. The `-m` flag will only allow you to set the title, so make sure to follow the 50 character commit title rule from the Git lab and only use it when no additional information would be necessary in the commit message body. If you wanted to tag a commit besides the current commit you would need to add the commit hash after the version number (but before the message). Normally a 1.0.0 release would have lots of additional notes on the current state of the software, but this is just an example. These tagged versions are stored in a special section of the repository on GitHub along with compressed versions of the source files to make public releases easier.
+
+> Note: It is possible to create both annotated tags using the `-a` flag and unannotated flags. Annotated flags carry additional information about their creation, so you **must** use them when adding a tag for your assignment.
 
 ## Reverting Commits
 
-Throughout the development process, there are times where new commits may introduce problems in existing code. For these situations, git handles reversion quite well.
+Throughout the development process, there are times where new commits may introduce problems in existing code. For these situations we can use git to revert the changes so our master is functional while we debug the issue on our own branch. This is very important for larger teams who might have contributors branching off of a broken master, leading to frustration when a developer thinks their changs are broken when really it was master that was broken.
 
 Let's say you push a commit that breaks something. To revert back to the last commit, type the following command.
 
@@ -268,4 +263,4 @@ Let's say you push a commit that breaks something. To revert back to the last co
 git revert HEAD
 ```
 
-This will create a new commit that is left off at the last commit. To revert to 2 or more commits down the chain, replace `HEAD` with the commit reference (the long string of characters that identify each commit).
+This will create a new commit that is left off at the last commit. To revert to 2 or more commits down the chain, replace `HEAD` with the commit reference (the long string of characters that identify each commit that can be viewed using `git log`).
