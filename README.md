@@ -51,7 +51,7 @@ Since this is an extension of the previous lab start by copying over the files f
 cp c-echo.h test.cpp CMakeLists.txt main.cpp ../<this-labs-directory>
 ```
 
-Four new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them). Make sure to also run `git submodule add https://github.com/google/googletest.git` to add the Google Testing framework. Go ahead and git add, commit, and push these four files and you'll be ready to close your first issue!
+Four new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them). Make sure to also run `git submodule add https://github.com/google/googletest.git` to add the Google Testing framework. Go ahead and git add, commit, and push these four files and you have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button which will convert that issue from open to closed, representing it has been completed.
 
 ## The Importance of Effective Branching
 
@@ -159,42 +159,39 @@ Let's say you didn't know your partner was editing the same file in another bran
 
 ### The Push
 
-Both partners should now commit and push these changes.
+Both partners should now commit and push these changes to their branches (if you haven't already)
 
-> Aside: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
+> Note: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
 
-Each partner should also refresh their local git by running `git fetch`. This will update your local repository so that the other partner's branch will show up.
-
-Before merging the branches, it is good practice to open a pull request that can be reviewed by your team members.
+Each partner should also refresh their local git's view of what branches exist and what they have by running `git fetch`. This will sync your git's local view of the world with what is in GitHub showing new changes. Rather than merging your branches into master through the command line it is good practice to open a pull request that can be reviewed by your team members. 
 
 ## Pull Requests
-The pull request system allows for maintainers of repositories to block changes from being added to certain branches until they meet specific requirements such as having a minimum number of approved code reviews and successfully passing automated tests. By having GitHub enforce these rules for us before our stable branches (like master) can have code added to them we greatly increase the changes that our stable branches will continue to be stable.
+
+Most organizations lock their master or main development branches so that code reviews and a passing set of unit and/or integration tests are required before code can be merged in to the master or main devleopment branches. The GitHub pull request system allows for maintainers of repositories to block changes from being added to certain branches until they meet specific requirements such as having a minimum number of approved code reviews and successfully passing automated tests. By having GitHub enforce these rules for us before our stable branches (like master) can have code added to them we greatly increase the changes that our stable branches will continue to be stable.
 
 Let's try doing this now. Both partners should open up their GitHub repository to prepare the PR. 
 
 ### Creating a Pull Request
 
-Partner 1 should press on the branch dropdown menu and select `<partner-1-github-username>/count-func`. Next, click on "New pull request". This will bring up the editing screen for the PR. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section. Search Partner 2's username and click on their username. This will assign Partner 2 to review the PR. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Count Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand.
-
-Once done finalizing the PR, click on "Create pull request".
+Partner 1 should press on the "Branch" dropdown menu located right above the repository files list and select `<partner-1-github-username>/count-func`. This will cause you to switch to viewing the new branch at which point you should click on the "New pull request" button right next to the "Branch" dropdown. This will bring up the editing screen for the PR. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section, searching for Partner 2's username, and selecting them. This will assign Partner 2 to review the PR and will add them to the notification list so they will receieve emails about any comments or discussion made on the PR. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Add Count Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand what modifications they need to look for. Once done finalizing the PR, click on "Create pull request".
 
 Partner 2 should follow the same steps above, except by selecting `<partner-2-github-username>/count-test` from the branch dropdown menu. Also, title it `Count Unit Test`. Make sure to choose Partner 1 as the reviewer and Partner 2 as the assignee.
 
 ### Issue Tracking Strikes Back!
 
-Remember that issue you made? There's a nifty way to close an issue without having to go to it directly and close it. 
+Previously in order to close an issue we went to the issues page and closed it by hand, however this is not the typical method for closing issues on GitHub. Instead, issues are usually closed through special annotations in commit messages which has the benefit of not only closing the issue when the commit with the annotation is merged into master automatically, but also linking the PR or commit that has the annotation to the issue automatically so it can be easily referenced later if there is an issue.
 
-Both partner's should amend their latest commit message. Type the following to do so:
+Both partner's should amend their latest commit message using the `--amend` flag, which re-opens the last commit allowing it to be changed. Type the following to do so:
 
 ```bash
 git commit --amend
 ```
 
-This will open up your editor. The very top should contain your most recent commit message. Go ahead and change the message to `Fixed #<issue number>`.
+This will open up your editor. The very top should contain your most recent commit message. Go ahead and change the message to `Fixes #<issue-number>`.
 
-> The issue number can be found to the right of your issue's title (after the hashtag).
+> Note: the issue number can be found to the right of your issue's title (after the hashtag). Don't forget to include the hash before the issue number.
 
-Exit the editor, then push once more. Go to your PRs on GitHub. You'll notice that every commit made to a branch that has an open PR will show up. You should also notice that your commit message has a hyperlink. If you click on the number, it should send you to the specified issue. Once the PR is merged and closed, GitHub will take care of closing the issue for you automatically. Nice!
+Save the message and exit the editor, then push once more. Go to your PRs on GitHub and you'll notice that every commit made to a branch that has an open PR will be listed. You should also notice that your commit message has a hyperlink. If you click on the number, it should send you to the specified issue. Once the PR is merged and closed, GitHub will take care of closing the issue for you automatically. Nice!
 
 ### Reviewing a Pull Request / Code Reviews
 
