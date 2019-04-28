@@ -65,6 +65,8 @@ Before branching, let's do some preliminary work. For the purpose of a future ex
 // count function should go here
 ```
 
+> Note: you should refer back to the links we provided in the git lab for creating good commit messages, however these are not the only good methods for commit messages. Lots of organizations have requirements on commit messages as they do reviews and style. Some of these try and categorize the commits such as the [gitmoji](https://gitmoji.carloscuesta.me/) system.
+
 Once you commit and push the above change, each partner should now create a branch from the master branch. Both partners should title their branches as such, respectively:
 
 ```
@@ -195,15 +197,17 @@ Save the message and exit the editor, then push once more. Go to your PRs on Git
 
 ### Reviewing a Pull Request / Code Reviews
 
-Throughout development, team members will most likely be working on integrating features into existing code. To help understand what is being added, code reviews are usually held with the team to better explain the addition. The traditional way is to meet and work through explaining every critical section of code, but doing this through pull requests is also acceptable.
+When developing on existing projects team members will usually be working on integrating features, squashing bugs, refactoring, or otherwise working with existing code. To help make sure that new changes will not adversely affect the system and are of generally high quality, code reviews are usually held with other members of the team. While there are lots of different ways to perform a code review, because GitHub is primarily focused on remote and decentralized teams it is typically done through comments (either generally on the PR or related to specific lines of code changed in that PR). Because you are likely to see your team members often, you may find it easier to work through code reviews in person. This is fine, but we do request that you write a simple "Reviewed in person" comment before merging a PR (more on merging in a later section).
 
-Review this [guide](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/) for some good practices for code reviews.
+You should review this [guide](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/) for some good practices for code reviews.
 
-Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and click on `Count Function`. From here, you can review comments made about the PR, all commits associated with that PR, and what changed within the files.
+Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and choose the `Count Function` PR. From here, you can review comments made about the PR under the "Conversation" tab, all commits associated with that PR under the "Commits" tab, and what changes have been made to various files under the "Files changed" tab.
 
-Near the bottom, you should see a green checkmark. This means GitHub found no possible merge conflicts. Go ahead and press "Merge pull request". This completes the merge from the `<partner-1-github-username>/count-func` branch to the master branch. You are now given the option to delete the branch. It's nice to keep repositories neat and tidy, so go ahead and delete the branch.
+Near the bottom of the "Conversation" tab, you should see a green checkmark next to a title reading "This branch has no conflicts with the base branch". This means GitHub found no merge conflicts between this branch and the master branch. Go ahead and press "Merge pull request". This will cause GitHub to essentially call `git checkout master && git merge <partner-1-github-username>/count-func` behind the scenes and merge the branch into master. You are now given the option to delete the branch, which you should do. This keeps the number of branches associated with your repo manageable and stops you from accidentally re-using a branch for a feature it wasn't named for.
 
-Partner 1 should navigate to the "Pull requests" tab and click on `Count Unit Test`. Unlike the first PR, this one has a merge conflict.
+> Note: deleting the branch will not automatically remove it from your local git (remember git doesn't automatically get updates from GitHub). You should switch off the branch on your local git (usually by checking out the master branch) and then run `git fetch` to sync your local git with GitHub, which will then trim the branch from your local git. If you do not do this and try and push from the deleted branc you will recieve an error.
+
+Partner 1 should navigate to the "Pull requests" tab and select the `Count Unit Test` PR. Unlike the first PR, this one has a merge conflict and GitHub cannot merge it automatically.
 
 <img src="https://github.com/cs100/template-lab-XX-git-flow/blob/dev/images/resolve-conflicts.png?raw=true" width="600">
 
