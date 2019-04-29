@@ -19,6 +19,8 @@ The goal of this lab is to get you more comfortable using Git and GitHub when wo
 * how to tag releases
 * how to revert to previous commits
 
+> Note: please wait to clone this repository until instructed to later in this README
+
 ## Issue Tracking
 
 The first thing we are going to do is use the built-in GitHub issue system to track and manage tasks. Issues are useful to keep track of bugs that appear in projects as well as tracking work that still needs to be done. 
@@ -45,7 +47,15 @@ Did you think we we're done adding issues? Nope! ( ͡° ͜ʖ ͡°)
 
 This lab will be extending the work you did in the Bash and Unit Tests lab. Create an issue for initializing the repository with the previous labs files (you should choose a good title and description) and assign the issue to both partners along with an "enhancement" label.
 
-Since this is an extension of the previous lab start by copying over the files from your Bash and Unit Testing lab (either partners files will be fine as long as they completed the Bash and Unit Testing lab). If you are working in a different environment than before or no longer have a local copy of your Bash and Unit Testing lab, re-clone it to your machine before proceeding (but don't clone it into this lab's folder). Make sure that both the Bash and Unit Testing lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Bash and Unit Testing lab's directory and use the `cp` command to copy the following files into this labs directory.
+Start by cloning the repository for this lab. Since the code provided in this lab already contains a submodule you will need to clone it recursively in order to recieve the code in the submodule along with the repository code.
+
+```
+git clone --recursive <lab-clone-url>
+```
+
+> Note: whenever you close a repository with that contains submodules you will need to use the `--recursive` flag to recieve the code within the submodule. If you forget to clone it recursively, you can run `git submodule update --init --recursive` to pull the submodules after the repo has been cloned. This can also be necessary when switching to a branch which has had a submodule added to it.
+
+Since this is an extension of the previous lab start by copying over the files from your Bash and Unit Testing lab (either partners files will be fine as long as they completed the Bash and Unit Testing lab) into the new lab. If you are working in a different environment than before or no longer have a local copy of your Bash and Unit Testing lab, re-clone it to your machine before proceeding (but don't clone it into this lab's folder). Make sure that both the Bash and Unit Testing lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Bash and Unit Testing lab's directory and use the `cp` command to copy the following files into this labs directory.
 
 ```
 cp c-echo.h test.cpp CMakeLists.txt main.cpp .gitignore ../<this-labs-directory>
@@ -85,14 +95,6 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 ```
-
-One last thing. Notice that the googletest directory is empty. If you recall the Bash lab, we spoke about needing a flag to download all submodules recursively. This can be done like so:
-
-```bash
-git submodule update --init --recursive
-```
-
-Please note that **every partner** should run the above command, since submodule population needs to be done locally.
 
 Go ahead and git add, commit, and push these five files. You have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button, which will convert that issue from open to closed, representing it has been completed.
 
