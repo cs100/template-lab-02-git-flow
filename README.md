@@ -35,7 +35,7 @@ Let's start by creating two issues for today's lab, with each partner creating o
 * **Create a word counting function**: Add a function to `main.cpp` which counts the number of words input from the user
 * **creating a word counting unit test**: Create unit tests for the word count function
 
-Throughout the remainder of the lab, Partner 1 will be working on the count function and Partner 2 will be creating the unit test, so make sure to set the assignees according to who will be completing which portion. For creating a count function, choose the "enhancement" label. For the unit test, choose the "unit test" label. Don't worry about selecting Projects or Milestone for this lab.
+Throughout the remainder of the lab, Partner 1 will be working on the count function and Partner 2 will be creating the unit test. Make sure to set the assignees according to who will be completing which portion. For creating a count function, choose the "enhancement" label. For the unit test, choose the "unit test" label. Don't worry about selecting Projects or Milestone for this lab.
 
 > Note: If the "enhancement" or "unit test" label doesn't exist, click on "Edit labels" and then "New label" at the top right and add it.
 
@@ -43,21 +43,15 @@ Throughout the remainder of the lab, Partner 1 will be working on the count func
 
 Did you think we we're done adding issues? Nope! ( ͡° ͜ʖ ͡°) 
 
-This lab will be extending the work you did in the Bash and Unit Tests lab. Create an issue for initializing the repository with the previous labs files (you should choose a good title and description) and assigning the issue to both partners along with an "enhancement" label.
+This lab will be extending the work you did in the Bash and Unit Tests lab. Create an issue for initializing the repository with the previous labs files (you should choose a good title and description) and assign the issue to both partners along with an "enhancement" label.
 
-Since this is an extension of the previous lab start by copying over the files from your Bash and Unit Testing lab (either partners files will be fine as long as they completed the Bash and Unit Testing lab). If you are working in a different environment than before or no longer have a local copy of your Bash and Unit Testing lab, re-clone it to your machine before proceding (but don't clone it into this labs folder). Make sure that both the Bash and Unit Testing lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Bash and Unit Testing lab's directory and use the `cp` command to copy the following files into this labs directory.
+Since this is an extension of the previous lab start by copying over the files from your Bash and Unit Testing lab (either partners files will be fine as long as they completed the Bash and Unit Testing lab). If you are working in a different environment than before or no longer have a local copy of your Bash and Unit Testing lab, re-clone it to your machine before proceeding (but don't clone it into this lab's folder). Make sure that both the Bash and Unit Testing lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Bash and Unit Testing lab's directory and use the `cp` command to copy the following files into this labs directory.
 
 ```
 cp c-echo.h test.cpp CMakeLists.txt main.cpp .gitignore ../<this-labs-directory>
 ```
 
 Five new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them).
-
-Notice that the googletest directory is empty. If you recall the Bash lab, we spoke about needing a flag to download all submodules recursively. This can be done like so:
-
-```bash
-git submodule update --init --recursive
-```
 
 Since we are adding `c-count.h`, we should also update our `CMakeLists.txt` file in the `ADD_EXECUTABLE` field like so:
 
@@ -66,7 +60,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 ADD_SUBDIRECTORY(googletest)
 
-SET(CMAKE__CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD 11)
 
 ADD_EXECUTABLE(c-echo-count
     main.cpp
@@ -80,10 +74,11 @@ TARGET_LINK_LIBRARIES(test gtest)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
 ```
 
-One last thing: let's change our .gitignore to reflect our additions:
+Let's also change our .gitignore to reflect our additions:
 
 ```
 c-echo-count
+test
 
 CMakeCache.txt
 CMakeFiles/
@@ -91,13 +86,23 @@ cmake_install.cmake
 Makefile
 ```
 
-Go ahead and git add, commit, and push these five files. You have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button which will convert that issue from open to closed, representing it has been completed.
+One last thing. Notice that the googletest directory is empty. If you recall the Bash lab, we spoke about needing a flag to download all submodules recursively. This can be done like so:
+
+```bash
+git submodule update --init --recursive
+```
+
+Please note that **every partner** should run the above command, since submodule population needs to be done locally.
+
+Go ahead and git add, commit, and push these five files. You have now completed your first issue. Go back to the issues tab and click on the issue you created for moving the files. Scroll to the bottom and click the "Close issue" button, which will convert that issue from open to closed, representing it has been completed.
+
+Make sure the partner that didn't add the files does a `git pull` so that everyone is up-to-date going into the next section.
 
 ## The Importance of Effective Branching
 
 In the Git lab, you learned that branching is used when developers want to change code without having to deal with conflicts between other contributors. When working on a team, it is wise to separate what each person is working on (and often each feature that person is working on) by making a branch unique to that change or set of changes. When that team member finishes their part, they can then merge back into the master or main development branch to signify that it is complete and should be part of the code everyone uses moving forward.
 
-> Note: you should refer back to the links we provided in the git lab for creating good commit messages, however these are not the only good methods for commit messages. Lots of organizations have requirements on commit messages as they do reviews and style. Some of these try and categorize the commits such as the [gitmoji](https://gitmoji.carloscuesta.me/) system.
+> Note: You should refer back to the links we provided in the git lab for creating good commit messages, however these are not the only good methods for commit messages. Lots of organizations have requirements on commit messages as they do reviews and style. Some of these try and categorize the commits such as the [gitmoji](https://gitmoji.carloscuesta.me/) system.
 
 Each partner should now create a branch from the master branch. Both partners should title their branches as such, respectively:
 
@@ -201,23 +206,23 @@ Both partners should now commit and push these changes to their branches (if you
 
 > Note: Since these branches were made locally and need to be pushed up to GitHub, you will be prompted to run `git push --set-upstream origin <branch name>` when pushing a branch for the first time.
 
-Each partner should also refresh their local git's view of what branches exist and what they have by running `git fetch`. This will sync your git's local view of the world with what is in GitHub showing new changes. Rather than merging your branches into master through the command line it is good practice to open a pull request that can be reviewed by your team members. 
+Each partner should also refresh their local git's view of what branches exist and what they have by running `git fetch`. This will sync your git's local view of the world with what is in GitHub showing new changes. Rather than merging your branches into master through the command line, it is good practice to open a pull request that can be reviewed by your team members. 
 
 ## Pull Requests
 
-Most organizations lock their master or main development branches so that code reviews and a passing set of unit and/or integration tests are required before code can be merged in to the master or main devleopment branches. The GitHub pull request system allows for maintainers of repositories to block changes from being added to certain branches until they meet specific requirements such as having a minimum number of approved code reviews and successfully passing automated tests. By having GitHub enforce these rules for us before our stable branches (like master) can have code added to them we greatly increase the changes that our stable branches will continue to be stable.
+Most organizations lock their master or main development branches so that code reviews and a passing set of unit and/or integration tests are required before code can be merged in to the master or main devleopment branches. The GitHub pull request system allows for maintainers of repositories to block changes from being added to certain branches until they meet specific requirements, such as having a minimum number of approved code reviews and successfully passing automated tests. By having GitHub enforce these rules for us *before* our stable branches (like master) can have code added to them, we greatly increase the changes that our stable branches will continue to be stable.
 
 Let's try doing this now. Both partners should open up their GitHub repository to prepare the PR. 
 
 ### Creating a Pull Request
 
-Partner 1 should press on the "Branch" dropdown menu located right above the repository files list and select `<partner-1-github-username>/count-func`. This will cause you to switch to viewing the new branch at which point you should click on the "New pull request" button right next to the "Branch" dropdown. This will bring up the editing screen for the PR. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section, searching for Partner 2's username, and selecting them. This will assign Partner 2 to review the PR and will add them to the notification list so they will receieve emails about any comments or discussion made on the PR. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Add Count Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand what modifications they need to look for. Once done finalizing the PR, click on "Create pull request".
+Partner 1 should press on the "Branch" dropdown menu located right above the repository files list and select `<partner-1-github-username>/count-func`. This will cause you to switch to viewing the new branch, at which point you should click on the "New pull request" button right next to the "Branch" dropdown. This will bring up the editing screen for the PR. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section, searching for Partner 2's username, and selecting them. This will assign Partner 2 to review the PR and will add them to the notification list so they will receieve emails about any comments or discussion made on the PR. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Add Count Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand what modifications they need to look for. Once done finalizing the PR, click on "Create pull request".
 
 Partner 2 should follow the same steps above, except by selecting `<partner-2-github-username>/count-test` from the branch dropdown menu. Also, title it `Count Unit Test`. Make sure to choose Partner 1 as the reviewer and Partner 2 as the assignee.
 
 ### Issue Tracking Strikes Back!
 
-Previously in order to close an issue we went to the issues page and closed it by hand, however this is not the typical method for closing issues on GitHub. Instead, issues are usually closed through special annotations in commit messages which has the benefit of not only closing the issue when the commit with the annotation is merged into master automatically, but also linking the PR or commit that has the annotation to the issue automatically so it can be easily referenced later if there is an issue.
+Previously, in order to close an issue, we went to the issues page and closed it by hand. However, this is not the typical method for closing issues on GitHub. Instead, issues are usually closed through special annotations in commit messages. This has the benefit of not only closing the issue when the commit with the annotation is merged into master automatically, but also linking the PR or commit that has the annotation to the issue automatically so it can be easily referenced later if there is an issue.
 
 Both partner's should amend their latest commit message using the `--amend` flag, which re-opens the last commit allowing it to be changed. Type the following to do so:
 
@@ -229,17 +234,19 @@ This will open up your editor. The very top should contain your most recent comm
 
 > Note: the issue number can be found to the right of your issue's title (after the hashtag). Don't forget to include the hash before the issue number.
 
-Save the message and exit the editor, then push once more. Go to your PRs on GitHub and you'll notice that every commit made to a branch that has an open PR will be listed. You should also notice that your commit message has a hyperlink. If you click on the number, it should send you to the specified issue. Once the PR is merged and closed, GitHub will take care of closing the issue for you automatically. Nice!
+Save the message and exit the editor, then push once more. You will need to force this push by entering `git push -f`, since this commit was already pushed earlier and needs to be updated.
+
+Go to your PRs on GitHub and you'll notice that every commit made to a branch that has an open PR will be listed. You should also notice that your commit message has a hyperlink. If you click on the number, it should send you to the specified issue. Once the PR is merged and closed, GitHub will take care of closing the issue for you automatically. Nice!
 
 ### Reviewing a Pull Request / Code Reviews
 
-When developing on existing projects team members will usually be working on integrating features, squashing bugs, refactoring, or otherwise working with existing code. To help make sure that new changes will not adversely affect the system and are of generally high quality, code reviews are usually held with other members of the team. While there are lots of different ways to perform a code review, because GitHub is primarily focused on remote and decentralized teams it is typically done through comments (either generally on the PR or related to specific lines of code changed in that PR). Because you are likely to see your team members often, you may find it easier to work through code reviews in person. This is fine, but we do request that you write a simple "Reviewed in person" comment before merging a PR (more on merging in a later section).
+When developing on existing projects, team members will usually be working on integrating features, squashing bugs, refactoring, or otherwise working with existing code. To help make sure that new changes will not adversely affect the system and are of generally high quality, code reviews are usually held with other members of the team. While there are lots of different ways to perform a code review, it is typically done through comments (either generally on the PR or related to specific lines of code changed in that PR). This is because GitHub is primarily focused on remote and decentralized teams. Because you are likely to see your team members often, you may find it easier to work through code reviews in person. This is fine, but we do request that you write a simple "Reviewed in person" comment before merging a PR (more on merging in a later section).
 
 You should review this [guide](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/) for some good practices for code reviews.
 
-Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and choose the `Count Function` PR. From here, you can review comments made about the PR under the "Conversation" tab, all commits associated with that PR under the "Commits" tab, and what changes have been made to various files under the "Files changed" tab.
+Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and choose the `Add Count Function` PR. From here, you can review comments made about the PR under the "Conversation" tab, all commits associated with that PR under the "Commits" tab, and what changes have been made to various files under the "Files changed" tab.
 
-Near the bottom of the "Conversation" tab, you should see a green checkmark next to a title reading "This branch has no conflicts with the base branch". This means GitHub found no merge conflicts between this branch and the master branch. Go ahead and press "Merge pull request". This will cause GitHub to essentially call `git checkout master && git merge <partner-1-github-username>/count-func` behind the scenes and merge the branch into master. You are now given the option to delete the branch, which you should do. This keeps the number of branches associated with your repo manageable and stops you from accidentally re-using a branch for a feature it wasn't named for.
+Near the bottom of the "Conversation" tab, you should see a green checkmark next to a title reading "This branch has no conflicts with the base branch". This means GitHub found no merge conflicts between this branch and the master branch. Go ahead and press "Merge pull request". It will ask you to confirm the merge, which you should do. This will cause GitHub to essentially call `git checkout master && git merge <partner-1-github-username>/count-func` behind the scenes and merge the branch into master. You are now given the option to delete the branch, which you should do. This keeps the number of branches associated with your repo manageable and stops you from accidentally re-using a branch for a feature it wasn't named for.
 
 > Note: deleting the branch will not automatically remove it from your local git (remember git doesn't automatically get updates from GitHub). You should switch off the branch on your local git (usually by checking out the master branch) and then run `git fetch` to sync your local git with GitHub, which will then trim the branch from your local git. If you do not do this and try and push from the deleted branc you will recieve an error.
 
@@ -248,6 +255,8 @@ Partner 1 should navigate to the "Pull requests" tab and select the `Count Unit 
 #### Fixing a Merge Conflict
 
 Let's resolve the merge conflict. Partner 1 should type the following commands which will change their current branch to master, update it to match what is on GitHub, and switch them back to their new branch:
+
+> Note: You might get an error about your `test` executable being overwritten during the checkout process. If this happens, simply remove the executable by typing `rm test`, then try again.
 
 ```bash
 git checkout master
@@ -265,9 +274,32 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 If you open `c-count.h` in a text editor, you should see some lines that include `<<<<<<< HEAD`, `=======`, and `>>>>>>> master`. 
 
-<img src="images/conflict.jpg?raw=true" width="600">
+```c++
+#include <iostream>
 
-Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in from the branch being merged, while everything past `=======` and before `>>>>>>> master` is existing code from the master branch (the branch that is being merged into). We'd like to accept the new code, so go ahead and delete everything past `=======` and before `>>>>>>> master`. Make sure to also delete these indicators, or you will get compilation errors.
+<<<<<<< HEAD
+int count(const std::string& phrase) {
+        return 0;
+=======
+unsigned int count(const std::string& str) {
+        unsigned int counter = 0;
+        bool on_space = true;
+
+        for(int i = 0; i < str.size(); i++) {
+                if (std::isspace(str[i]))
+                        on_space = true;
+                else if (on_space) {
+                        counter++;
+                        on_space = false;
+                }
+        }
+
+        return counter;
+>>>>>>> master
+}
+```
+
+Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in from the branch being merged, while everything past `=======` and before `>>>>>>> master` is existing code from the master branch (the branch that is being merged into). We'd like to accept the fully-built count function, so go ahead and delete everything past `<<<<<<< HEAD` and before `=======`. Make sure to also delete these indicators, or you will get compilation errors.
 
 > Note: while this merge was relatively straight-forward and we just wanted to accept what was in master, there are times when you will need to merge both branches in order to get what you actually want. This may lead to additional errors, so its always important to test the code to make sure it's still working after a merge has been resolved.
 
@@ -279,7 +311,7 @@ Using the good practices for code reviews reference above, make sure everything 
 
 Throughout the development process, there are times where new commits may introduce problems in existing code. For these situations we can use git to revert the changes so our master is functional while we debug the issue on our own branch. This is very important for larger teams who might have contributors branching off of a broken master, leading to frustration when a developer thinks their changs are broken when really it was master that was broken.
 
-Uh-oh, we forgot about adding the function to `main.cpp`! Let's do that now. Flip a coin between Partner 1 and 2 to see who does so.
+Uh-oh, we forgot about adding the function to `main.cpp`! Let's do that now. Since Partner 1 resolved the merge conflict, Partner 2 should do this part.
 
 ```c++
 #include "c-echo.h"
