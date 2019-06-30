@@ -244,7 +244,12 @@ Go to your PRs on GitHub and you'll notice that every commit made to a branch th
 
 When developing on existing projects, team members will usually be working on integrating features, squashing bugs, refactoring, or otherwise working with existing code. To help make sure that new changes will not adversely affect the system and are of generally high quality, code reviews are usually held with other members of the team. While there are lots of different ways to perform a code review, it is typically done through comments (either generally on the PR or related to specific lines of code changed in that PR). This is because GitHub is primarily focused on remote and decentralized teams. Because you are likely to see your team members often, you may find it easier to work through code reviews in person. This is fine, but we do request that you write a simple "Reviewed in person" comment before merging a PR (more on merging in a later section).
 
-You should review this [guide](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/) for some good practices for code reviews.
+You should review this [guide](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/) for some good practices for code reviews, but here are some general rules to keep in mind:
+
+* Start with a positive note: reviewees will be more receptive to your comments if you start with something positive rather than only pointing out the negatives.
+* Reference the code not the coder: when you make a comment, reference the code and not the person who wrote the code.
+* Use line item suggestions: when reviewing the files you can make a comment on a specific line making it much easier for the reviewee to know exactly what code you are referencing with your comment
+* Don't assume you know better: you may think a piece of code is incorrect or inefficient but it maybe that you simply don't have the full context of the problem. Rather than saying something is wrong suggest a way it might be improved and ask if there is an issue with your proposed solution or request more context about why a peice of code was written the way it was.
 
 Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and choose the `Add Count Function` PR. From here, you can review comments made about the PR under the "Conversation" tab, all commits associated with that PR under the "Commits" tab, and what changes have been made to various files under the "Files changed" tab.
 
