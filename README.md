@@ -359,6 +359,12 @@ Often, you’ll want to tag certain git commits because they are special. The mo
 $ git tag -a v1.0.0 -m “Initial stable release”
 ```
 
-The `-m` in this case works the same as it does when performing a commit, allowing us to add a message but bypassing the editor to do so. The `-m` flag will only allow you to set the title, so make sure to follow the 50 character commit title rule from the Git lab and only use it when no additional information would be necessary in the commit message body. If you wanted to tag a commit besides the current commit you would need to add the commit hash after the version number (but before the message). Normally a 1.0.0 release would have lots of additional notes on the current state of the software, but this is just an example. These tagged versions are stored in a special section of the repository on GitHub along with compressed versions of the source files to make public releases easier.
+The `-m` in this case works the same as it does when performing a commit, allowing us to add a message but bypassing the editor to do so. The `-m` flag will only allow you to set the title, so make sure to follow the 50 character commit title rule from the Git lab and only use it when no additional information would be necessary in the commit message body. If you wanted to tag a commit besides the current commit you would need to add the commit hash after the version number (but before the message). Normally a 1.0.0 release would have lots of additional notes on the current state of the software, but this is just an example. These tagged versions are stored in a special section of the repository on GitHub along with compressed versions of the source files to make public releases easier. This command creates the tag, but like most git commands it will only create the tag locally. In order to push this tag to GitHub you need to execute the following command.
+
+```
+git push origin v1.0.0
+```
+
+This will push the tag we just created (`v1.0.0`) to GitHub which is our remote git repository. The remote repository (by convention) is named `origin` which is where we designated the tag to be pushed to.
 
 > Note: It is possible to create both annotated tags using the `-a` flag and unannotated flags. Annotated flags carry additional information about their creation, so you **must** use them when adding a tag for your assignment.
