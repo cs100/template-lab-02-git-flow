@@ -100,6 +100,8 @@ Go ahead and git add, commit, and push these five files. You have now completed 
 
 Make sure the partner that didn't add the files does a `git pull` so that everyone is up-to-date going into the next section.
 
+> Note: you will be ased to authentciate every push you make to GitHub with your password. If you woud like to avoid this you can use the git credential cache to temporarily store your password. With this system you set a timeout (we recommend 1 hours = 3600) and only need to re-enter your password after the timeout period has elapsed. You can see [an example of how to enable the git credential cache here](https://git-scm.com/docs/git-credential-cache#_examples)
+
 ## The Importance of Effective Branching
 
 In the Git lab, you learned that branching is used when developers want to change code without having to deal with conflicts between other contributors. When working on a team, it is wise to separate what each person is working on (and often each feature that person is working on) by making a branch unique to that change or set of changes. When that team member finishes their part, they can then merge back into the master or main development branch to signify that it is complete and should be part of the code everyone uses moving forward.
