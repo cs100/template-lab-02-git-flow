@@ -1,6 +1,273 @@
-# GitHub Flow
+# Git and GitHub / GitHub Flow
 
-> Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla)) and Brian Crites ([@brrcrites](https://github.com/brrcrites))
+> Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla)), Brian Crites ([@brrcrites](https://github.com/brrcrites)), and Mike Izbicki ([@mikeizbicki](https://github.com/mikeizbicki))
+
+In the first lab, we briefly introduced Git and GitHub as a means of version control. Now we will show how these two systems together can be used for efficient collaborative purposes.
+
+> Note: Just like with previous labs, make sure to clone this repository to `hammer` before reading on.
+
+## Git Branch & Log
+
+We’ve already talked about the fact that Git keeps track of the state of your code every time you commit. This creates specific snapshots of your code at a point in time, and allows Git to keep track of changes to each file over time. Git’s ability to keep track of each files changes and when those changes happened is an important factor in its ability to allow us to work collaboratively. Most software is written across an entire team of developers, and each developers could in theory be working on the same segment of code at any given time. If every time one of the developers made a commit, the other developers had to download the updates to the files, fix any conflicts between what they were already working on, and then test to make sure everything is broken then nothing would ever get done. 
+
+Instead, each developers freezes the code at a specific commit (usually the most recent when they clone their repo, more on that later) and then they request the updates to all the files, resolve conflicts, and test the code when they are done working on their bit of the development. The way Git represents the different developers working on the same code without constantly making collisions is with a feature called branching. A branch is what we call it when someone takes a commit from git, and starts developing from there separately from everyone else.
+
+A project can have many branches, and every branch can be different than every other branch. The visualization showing where each branch has split and been added to, as well as merged back into each other is often known as the “working tree”. List the branches in your current project using the command:
+
+```
+$ git branch
+```
+
+This should list just a single branch called master. This branch is automatically created when `git init` is ran on a new repo.
+
+Every time we add a new feature to a project, we create a branch for that feature. In order to help keep track of which branches are for what features, and who is using them, we are going to use a standard naming convention to make things easier. Let's create a branch called `add-user-input` in our project, and prepend our GitHub username so we know its ours:
+
+```
+$ git branch <github-username>/add-user-input
+```
+
+You should replace `<github-username>` with your own GitHub username. Verify that our branch was created successfully with the following command:
+
+```
+$ git branch
+```
+
+You should see two branches now. There should be an asterisk next to the master branch. This tells us that master is the currently active branch, and if we commit any new changes, they will be added to the master branch. (That is, master will change to point to whatever your new commit is.)
+
+Switch to our new branch using the command:
+
+```
+$ git checkout <github-username>/add-user-input
+```
+
+Now run the following command:
+
+```
+$ git branch
+```
+
+Verify that the asterisk is next to the `<github-username>/add-user-input` branch. Since the only thing you did was switch branches, the working tree looks almost the same. The only difference is the asterisk has moved. You can also view the status of the current branch using:
+
+```
+$ git status
+```
+ 
+You should see a `main.cpp` in the repo you just cloned. Let's modify it so that it asks the user their name before saying hello:
+
+```
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std::string name;
+    std::cout << "What is your name?" << std::endl;
+    std::cin >> name;
+    std::cout << "Hello " << name << "!" << std::endl;
+
+    return 1;
+}
+```
+
+Sometimes, we make modification to a program and can’t quite remember exactly what we’ve changed since the commit. Luckily, since Git is keeping track of all our file changes it provides a simple way to see what's been modified with the following command:
+
+```
+$ git diff main.cpp
+```
+
+Running this will show you the difference between the current version of `main.cpp` and the version at the last commit and you should see something like this
+
+```
+ #include <iostream>
++#include <string>
+ 
+ int main()
+ {
+-    std::cout << "hello git" << std::endl;
++    std::string name;
++    std::cout << "What is your name?" << std::endl;
++    std::cin >> name;
++    std::cout << "Hello " << name << "!" << std::endl;
++
+     return 1;
+ }
+```
+
+Here, the lines with a plus (`+`) at the beginning represent new lines and the lines with a minus (`-`) represent lines that were removed. We can now commit our changes to the current working branch the same way we committed them before:
+
+```
+$ git add main.cpp
+$ git commit -m "Add user input”
+```
+
+Before this commit, the `<github-username>/add-user-input` and `master` branches were pointing to the same commit. When you run this command, the `<github-username>/add-user-input` branch gets updated to point to this new commit. In Git parlance, since the `<github-username>/add-user-input` branch now has one more commit than the `master` branch (and the `master` branch hasn’t been updated) it is now 1 commit ahead of `master`.
+
+Let's verify that our changes affected only the `<github-username>/add-user-input` branch and not the `master` branch. First, checkout the `master` branch, then cat the `main.cpp` file, then return to the `<github-username>/add-user-input` branch.
+
+```
+$ git checkout master
+$ cat main.cpp
+$ git checkout <github-username>/add-user-input
+```
+
+You should be able to see the difference between the files (your text editor may also ask you to load the new file since it has detected changes). Branches allow us to work on and track multiple features at the same time without having to worry about creating errors in our repository (because the `master` branch will always be in a working state). We can also move forward and back in the changes that we’ve made to any branch, making it very easy to make a mistake and be able to recover from it (one of the major benefits of using Git). 
+
+Changing between branches to see the differences in files is difficult and error-prone. Luckily, Git provides a mechanism for viewing the commits that have been made through the Git log. Run the following command and you should see your commit history:
+
+```
+$ git log
+```
+
+Each line starts with commit and then a series of numbers and letters known as a hash which are used to (relatively) uniquely identify each commit. At the end of some of these lines you can see additional information like (`HEAD -> <github-username>/add-user-input`) and (`master`). These are indicators showing the last commits for various branches (or at least the last ones git knows about).
+
+Normally when working on a feature you would want to update the documentation in the README.md to reflect the changes. Proper documentation of your system will be part of your grade for this course. However, since the documentation for the labs is the instructions, you will only need to update your documentation for the projects.
+
+While we were working on our `<github-username>/add-user-input branch`, someone reported a bug in our `master` branch. In particular, the main function in our `master` branch returns 1, but a successful program should return 0. In UNIX, any return value other than 0 indicates that some sort of error occurred.
+
+To fix this bug, we first checkout our `master` branch:
+
+```
+$ git checkout master
+```
+
+Then create a bugfix branch and check it out:
+
+```
+$ git branch <github-username>/main-return-hotfix
+$ git checkout <github-username>/main-return-hotfix
+```
+
+Now we're ready to edit the code. Update the main function to return 0, then commit your changes:
+
+```
+$ git add main.cpp
+$ git commit -m "Fix main to return 0 not 1”
+```
+
+## Git Merge & Conflicts
+
+We want our users to get access to the fixed software, so we have to add our hotfix code into the `master` branch. This process is called "merging," which in this case is a simple procedure. First, checkout the `master` branch:
+
+```
+$ git checkout master
+```
+
+Then run the command:
+
+```
+$ git merge <github-username>/main-return-hotfix
+```
+
+This will try and automatically merge the hotfix code we wrote with the code in our current branch, which right now is `master`. If we are trying to merge branch B into branch A, there should be no conflicts if branch B is ahead (meaning there are new commits in B from when it was branched off A) and not behind (meaning there are new commits in A from when B was branched off). Branches can be both ahead and behind each other at any given time, meaning new commits have been made to both branches without a merge happening. This is very common, and so if conflicts do arise then Git will warn us about them.
+
+> Note: While the Git merge conflict checking is good, it is not infowlable. Issues can arise that git will merge without warning you, usually when an interface is changed in one file but the calls are not changed in another. This can lead to weird bugs that are hard to diagnose if you think that the Git merging system is infowlable.
+
+With real bugs on more complicated software, bug fixes won't be quite this easy. They might require editing several different files and many commits. It might take us weeks just to find out what's even causing the bug! By putting our changes in a separate branch, we make it easy to have someone fixing the bug while someone else is adding new features.
+
+Our `<github-username>/add-user-input` feature is also ready now. We've tested it (well not really, but you’ll get plenty of testing in the next lab) and are sure it's working correctly. It's time to merge this feature with the `master` branch. Run the commands:
+
+```
+$ git checkout master
+$ git merge <github-username>/add-user-input
+```
+
+This one isn’t quite as easy as the last merge. We get an error message saying:
+
+```
+Auto-merging main.cpp
+CONFLICT (content): Merge conflict in main.cpp
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+This error is called a "merge conflict" and is one of the hardest concepts for new Git users to understand. Why did this happen?
+
+In our hotfix branch above, Git automatically merged the `main.cpp` file for us. It could do this because the `main.cpp` file in the `master` branch did not change after we created the bugfix branch (in other words the hotpatch branch was ahead but not behind `master`). Unfortunately, after we merged the hotfix branch into `master`, this changed the `main.cpp` file. Now when git tries to merge our changes from the `<github-username>/add-user-input` branch, it doesn't know which parts to keep from `<github-username>/add-user-input`, and which parts to keep from the hotfix branch. We have to tell git how to do this manually.
+
+If you inspect the contents of the main.cpp file, you'll see something like:
+
+```
+#include <iostream>
+#include <string>
+
+int main()
+{
+<<<<<<< HEAD
+    std::cout << "hello git!" << std::endl;
+    Std::cout << “git is easy?” << std::endl;
+    return 1;
+=======
+    std::string name;
+    std::cout << "What is your name?" << std::endl;
+    std::cin >> name;
+    std:::cout << "Hello " << name << "!" << std::endl;
+
+    return 0;
+>>>>>>> <github-username>/add-user-input
+}
+```
+
+As you can see, the file is divided into several sections. Any line not between the `<<<<<<<<` and `>>>>>>>>` lines is common to both versions of main.cpp. The lines between `<<<<<<<< HEAD` and `=======` belong only to the version in the current branch (`master`). And the lines between `=======` and `>>>>>>>> <github-username>/add-user-input` belong only to the `<github-username>/add-user-input` branch (the branch you are merging in).
+
+The key to solving a merge conflict is to edit the lines between `<<<<<<<` and `>>>>>>>` to include only the correct information between the two branches. In our case, we want the return statement from the master branch, and all of the input/output from the `<github-username>/add-user-input` branch. So we should modify the main.cpp file to be:
+
+```
+#include <iostream>
+#include <string>
+
+int main()
+{
+    std::string name;
+    std::cout << "What is your name?" << std::endl;
+    std::cin >> name;
+    std::cout << "Hello " << name << "!" << std::endl;
+
+    return 0;
+}
+```
+
+Most of the changes you’ll need to make will be between the special markers that represent the conflicting code, however you will sometimes have to make changes outside of these special markers. This is usually because you made changes that didn’t conflict somewhere else, but the conflicting code changed some access/mutation pattern and you have to correct the unconflicted code. Whenever you fix a merge conflict yourself, git will assume whatever you did was correct so you should only be doing what's necessary to merge the two branches. This isn’t the time to fix additional bugs, make style changes, or modify an accessor. You should use `--amend` for that work after you’ve fixed the merge to keep the commits clean.
+
+Once we have resolved this merge conflict, we can finalize our merge. We first tell Git that we've solved the conflict by adding the conflicting files, then we perform a standard commit. Since Git knows we are trying to merge a commit, it will actually generate a generic merging commit message for us.
+
+```
+$ git add main.cpp
+$ git commit
+```
+
+As you can see, resolving merge conflicts is a tedious process. Most projects try to reduce the number of merge conflicts as much as possible. A simple strategy for doing this is using many small source files rather than a few large files, and working on features with little overlap. However, merge conflicts are often unavoidable especially when working with larger teams.
+
+## Git Push & Pull
+
+While Git is a VCS, GitHub is a remote repository which is an important distinction for two reasons. The first is that up until now all the work you’ve done has only been saved locally, so if there is a problem with your computer you would have no backup and therefore no way to recover the files. The second is that because all the changes are local, there is no way for people collaborating with you to see your changes or merge them into their own branches. Go to your GitHub repository for this lab, and you should see that none of the work you've done is listed.
+
+Since we cloned the remote repository from GitHub directly, our local repository is already associated with a remote repository (usually referred to as “remote” or “upstream”). In order to send the changes we’ve made locally to GitHub, we just need to “push” them up to the server (do this now).
+
+```
+$ git push
+```
+
+This will push all the commits for **the current branch**, not all the branches you have changes for. If there haven’t been any other changes to the remote GitHub version of that branch, then this will simply send the commits to the repo. However, if there have been changes to the branch, perhaps because someone else has also been working on that same branch or changes have been merged into master, then you will first need to “pull” the remote changes, merge them with your work, and then push the merged version to GitHub:
+
+```
+$ git pull
+```
+
+Like `git push`, `git pull` will request the changes for **only the current branch**, not all the branches. Git will automatically try and merge the remote changes with your current changes. It may be able to automatically merge or you may need to fix merge conflicts. Either way you then need to
+
+```
+$ git commit
+$ git push
+```
+
+It is also possible to receive the remote changes (also known as upstream changes) without having git automatically attempt to merge them into your branch. For this you would use the following command
+
+```
+$ git fetch
+```
+
+After this, you can do a git merge to integrate the remote changes. `git pull` essentially runs a git fetch and a git merge together in one step. You will be using `git push` and `git pull` extensively in your projects for this course, and merge conflicts will likely occur fairly regularly.
+
+# Part 2: GitHub Flow
 
 For most of your professional careers in industry, you will work on projects alongside other contributors. In order to reduce the friction that can occur between developers with different backgrounds, styles, and opinions, most companies, organizations, and projects dictate their preferred style and method of contribution. Dictating a preferred style gives your codebase a consistent look and makes it easier for developers to understand since things are done in a consistent manner. Having a preferred method of contribution, or workflow, makes sure that different contributors know who is working on what and enforce that their contribution meets the standards set out by the organization. Having a good workflow is an important step to make sure your organziation (or for this course, your team) is working efficiently to create well-tested and high quality code.
 
@@ -18,8 +285,6 @@ The goal of this lab is to get you more comfortable using Git and GitHub when wo
 * how to tackle merge conflicts
 * how to tag releases
 * how to revert to previous commits
-
-> Note: please wait to clone this repository until instructed to later in this README
 
 ## Issue Tracking
 
@@ -47,7 +312,7 @@ Did you think we we're done adding issues? Nope! ( ͡° ͜ʖ ͡°)
 
 This lab will be extending the work you did in the Bash and Unit Tests lab. Create an issue for initializing the repository with the previous labs files (you should choose a good title and description) and assign the issue to both partners along with an "enhancement" label.
 
-Start by cloning the repository for this lab. Since the code provided in this lab already contains a submodule you will need to clone it recursively in order to recieve the code in the submodule along with the repository code.
+The code provided in this lab already contains a submodule, so you will need to clone it recursively in order to recieve the code in the submodule along with the repository code.
 
 ```
 git clone --recursive <lab-clone-url>
