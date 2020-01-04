@@ -1,60 +1,51 @@
-# Git and GitHub / GitHub Flow
+# Developing with Git & GitHub
 
 > Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla)), Brian Crites ([@brrcrites](https://github.com/brrcrites)), and Mike Izbicki ([@mikeizbicki](https://github.com/mikeizbicki))
 
-In the first lab, we briefly introduced Git and GitHub as a means of version control. Now we will show how these two systems together can be used for efficient collaborative purposes.
+In this lab we will continue our discussion of Git as a means of version control and how it, in combination with GitHub, can be used to efficiently collaborate with other developers.
 
-> Note: Just like with previous labs, make sure to clone this repository to `hammer` before reading on.
+> Note: Just like with previous labs, make sure to clone this repository to `hammer` before continuing.
 
 ## Git Branch & Log
 
-We’ve already talked about the fact that Git keeps track of the state of your code every time you commit. This creates specific snapshots of your code at a point in time, and allows Git to keep track of changes to each file over time. Git’s ability to keep track of each files changes and when those changes happened is an important factor in its ability to allow us to work collaboratively. Most software is written across an entire team of developers, and each developers could in theory be working on the same segment of code at any given time. If every time one of the developers made a commit, the other developers had to download the updates to the files, fix any conflicts between what they were already working on, and then test to make sure everything is broken then nothing would ever get done. 
+We mentioned in lab 1 that Git keeps track of the state of your code every time you make a commit. This commit is a snapshots of each of the files you've added and the changes since the last commit. By ordering these snapshots Git can keep track of how individual files change over time and allow you to move backwards and forwards in that files history. Git can also keep track of mulitple parallel sets of changes to files, known as branches. This combined with the ability to see how the combination of multiple changes together would effect a file is the primary way Git allows you to work collaboratively. 
 
-Instead, each developers freezes the code at a specific commit (usually the most recent when they clone their repo, more on that later) and then they request the updates to all the files, resolve conflicts, and test the code when they are done working on their bit of the development. The way Git represents the different developers working on the same code without constantly making collisions is with a feature called branching. A branch is what we call it when someone takes a commit from git, and starts developing from there separately from everyone else.
+Most software is written across team(s) of developers and many developers might be working on the same file at the same time. If every time one of the developers made a commit the other developers had to download the updates to the files, fix any conflicts with what they were currently working on, and then test nothing was broken then development would slow to a crawl. Instead, each developer freezes the code at a specific commit (usually the most recent version), add or modify the code as necessary, and then they request all the other developers changes, fix conflicts, and test it before submitting their changes. 
 
-A project can have many branches, and every branch can be different than every other branch. The visualization showing where each branch has split and been added to, as well as merged back into each other is often known as the “working tree”. List the branches in your current project using the command:
+The way Git represents the different developers working on the same code without constantly making collisions is with a feature called branching. Each branch represents a set of ordered changes to files which could be applied on top of a particular commit. 
+
+Projects typically have many branches which represent in development features, patches, or other changes. While most branches don't have any specific meaning as far as Git is concerned it is typical to have a "main" branch which represents all the changes which have been reviewed, approved, and are in or ready to be deployed to a server with actual users. By default GitHub will create a `master` branch for each project which serves this purpose, which is a common convention and the one you will use in this class. 
+
+The visualization showing where each branch has split and been added to as well as merged back into each other is often known as the “working tree”. List the branches in your current project using the command:
 
 ```
 $ git branch
 ```
 
-This should list just a single branch called master. This branch is automatically created when `git init` is ran on a new repo.
+This list should only have the single `master` branch created by Git or GitHub during initialization, such as when when `git init` is run on the command line or you create a new repo on GitHub (which does this step as well, just behind the scenes).
 
-Every time we add a new feature to a project, we create a branch for that feature. In order to help keep track of which branches are for what features, and who is using them, we are going to use a standard naming convention to make things easier. Let's create a branch called `add-user-input` in our project, and prepend our GitHub username so we know its ours:
+Every time we develop a new feature or write a patch for your project you should create a branch specifically for it. In order to help keep track of which branches are for what features, and who is using them, we are going to use a standard naming convention to make things easier. Let's create a branch for adding user input to our project.
 
 ```
 $ git branch <github-username>/add-user-input
 ```
 
-You should replace `<github-username>` with your own GitHub username. Verify that our branch was created successfully with the following command:
+All your branches will start with your GitHub username (which you should use in place of `<github-username>`) followed by a short dash seperated description of the feature or patch you are working on (they should be dash seperated as they will go into teh GitHub url and url's don't allow underscores). Verify that our branch was created successfully with the following command:
 
 ```
 $ git branch
 ```
 
-You should see two branches now. There should be an asterisk next to the master branch. This tells us that master is the currently active branch, and if we commit any new changes, they will be added to the master branch. (That is, master will change to point to whatever your new commit is.)
-
-Switch to our new branch using the command:
+You should see two branches now with an asterisk next to the `master` branch. This tells us that master is the currently active branch and if we commit any new changes they will be added to the master branch. Switch to the new branch using `git checkout` (below) and verify we have switched using `git branch`:
 
 ```
 $ git checkout <github-username>/add-user-input
-```
-
-Now run the following command:
-
-```
 $ git branch
 ```
 
-Verify that the asterisk is next to the `<github-username>/add-user-input` branch. Since the only thing you did was switch branches, the working tree looks almost the same. The only difference is the asterisk has moved. You can also view the status of the current branch using:
+You should see that the asterisk is next to the `<github-username>/add-user-input` branch. Since the only thing you did was switch branches the working tree looks almost the same at this point. You should see a `main.cpp` in the repo you just cloned. Let's modify it so that it asks the user their name before saying hello:
 
-```
-$ git status
-```
- 
-You should see a `main.cpp` in the repo you just cloned. Let's modify it so that it asks the user their name before saying hello:
-
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -69,15 +60,21 @@ int main()
 }
 ```
 
-Sometimes, we make modification to a program and can’t quite remember exactly what we’ve changed since the commit. Luckily, since Git is keeping track of all our file changes it provides a simple way to see what's been modified with the following command:
+Since Git is already tracking the file (since it was added previously and is already in the repo) it can let you know that the file has changed and you might want to think about saving it in a commit. You can see the state of your repo, showing which files have been staged (added to a commit, but the commit not finalized), changed but not staged (modified but not added to a commit), or untracked (not currently part of the repo) using the following:
+
+```
+git status
+```
+
+You may find that you've modified a file but are unable to remember exactly what changes have been made since the last commit. Since Git is keeping track of all the file changes it provides a simple way to see what's been modified with the following command:
 
 ```
 $ git diff main.cpp
 ```
 
-Running this will show you the difference between the current version of `main.cpp` and the version at the last commit and you should see something like this
+Running this will show you the difference between the current version of `main.cpp` and the version at the last commit and you should see something like this:
 
-```
+```diff
  #include <iostream>
 +#include <string>
  
@@ -100,7 +97,7 @@ $ git add main.cpp
 $ git commit -m "Add user input”
 ```
 
-Before this commit, the `<github-username>/add-user-input` and `master` branches were pointing to the same commit. When you run this command, the `<github-username>/add-user-input` branch gets updated to point to this new commit. In Git parlance, since the `<github-username>/add-user-input` branch now has one more commit than the `master` branch (and the `master` branch hasn’t been updated) it is now 1 commit ahead of `master`.
+Before this commit, the `<github-username>/add-user-input` and `master` branches were pointing to the same commit. When you run the command to create the commit the `<github-username>/add-user-input` branch gets updated to point to this new commit. In Git parlance, since the `<github-username>/add-user-input` branch now has one more commit than the `master` branch (and the `master` branch hasn’t been updated) it is now 1 commit ahead of `master`.
 
 Let's verify that our changes affected only the `<github-username>/add-user-input` branch and not the `master` branch. First, checkout the `master` branch, then cat the `main.cpp` file, then return to the `<github-username>/add-user-input` branch.
 
