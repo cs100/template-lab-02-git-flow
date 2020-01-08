@@ -2,6 +2,8 @@
 
 > Author(s): Andrew Lvovsky ([@borninla](https://github.com/borninla)), Brian Crites ([@brrcrites](https://github.com/brrcrites)), and Mike Izbicki ([@mikeizbicki](https://github.com/mikeizbicki))
 
+**You must work in a group of two for this lab. The portion requiring a partner starts in Part 2**
+
 # Part 1: Git
 
 In this lab we will continue our discussion of Git as a means of version control and how it, in combination with GitHub, can be used to efficiently collaborate with other developers. By the end of this section you should be familiar with
