@@ -316,7 +316,7 @@ git clone --recursive <lab-clone-url>
 Since this is an extension of the previous lab start by copying over the files from your Bash and Unit Testing lab (either partners files will be fine as long as they completed the Bash and Unit Testing lab) into the new lab. If you are working in a different environment than before or no longer have a local copy of your Bash and Unit Testing lab, re-clone it to your machine before proceeding (but don't clone it into this lab's folder). Make sure that both the Bash and Unit Testing lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Bash and Unit Testing lab's directory and use the `cp` command to copy the following files into this labs directory.
 
 ```
-cp c-echo.h test.cpp CMakeLists.txt main.cpp .gitignore ../<this-labs-directory>
+cp c-echo.h test.cpp CMakeLists.txt main2.cpp .gitignore ../<this-labs-directory>
 ```
 
 Five new files should now be located in this lab's directory (you will have to navigate back to this labs directory and use `ls` to see them).
