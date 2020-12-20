@@ -129,6 +129,8 @@ $ git log
 
 Each line starts with commit and then a series of numbers and letters known as a hash which are used to (relatively) uniquely identify each commit. At the end of some of these lines you can see additional information like (`HEAD -> <github-username>/add-user-input`) and (`master`). These are indicators showing the last commits for various branches (or at least the last ones git knows about). It also has the commit message associated with that commit which, assuming you wrote good commit messages, should tell you what is in each commit.
 
+> Tip: There is also a `gitk` tool which provides a graphical user interface for inspecting the commits in a git repository.  This tool is not installed on `hammer`, but if you are using git locally, you may find the utility helpful.
+
 When working on a feature you may also need to update the documentation in the README.md to reflect the changes. Proper documentation of your system will be part of your grade for this course. However, since the documentation for the labs is the instructions, you will only need to update your documentation for the projects.
 
 While we were working on our `<github-username>/add-user-input branch` someone reported a bug in our `master` branch. In particular, the main function in our `master` branch returns 1 but a successful program should return 0. In UNIX, any return value other than 0 indicates that some sort of error occurred.
@@ -235,6 +237,8 @@ $ git commit
 ```
 
 As you can see resolving merge conflicts can be a tedious process and many projects user various means to try to reduce the number of merge conflicts when possible. Some strategies you can use to try and reduce conflicts is to use good coding structure and splitting your classes into seperate files each with its own header and source file and breaking up development tasks to reduce concurrent overlap. However, merge conflicts are often unavoidable especially when working with larger teams. You will have to deal with some type of code confilict resolution in industry, so you should practice this process now so you are prepared to deal with it later.
+
+> Tip: There are graphical utilities that can make resolving conflicts much easier.  I use a tool called `meld` for this purpose.  This tool is not installed on `hammer`, but if you are using git locally, you may find the utility helpful.
 
 ## Git Push & Pull
 
@@ -358,7 +362,9 @@ Go ahead and git add, commit, and push these five files. You have now completed 
 
 Make sure the partner that didn't add the files does a `git pull` so that everyone is up-to-date going into the next section.
 
-> Note: you will be ased to authentciate every push you make to GitHub with your password. If you woud like to avoid this you can use the git credential cache to temporarily store your password. With this system you set a timeout (we recommend 1 hours = 3600) and only need to re-enter your password after the timeout period has elapsed. You can see [an example of how to enable the git credential cache here](https://git-scm.com/docs/git-credential-cache#_examples)
+> Note: you will be ased to authentciate every push you make to GitHub with your password. If you woud like to avoid this you can use the git credential cache to temporarily store your password. With this system you set a timeout (we recommend 1 hours = 3600) and only need to re-enter your password after the timeout period has elapsed. You can see [an example of how to enable the git credential cache here](https://git-scm.com/docs/git-credential-cache#_examples).
+
+> Advanced tip: An alternative way to avoid entering your github password is to use [ssh keys](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account).  Once set up, they allow you to issue git commands to github without *ever* entering your password.
 
 ## The Importance of Effective Branching
 
@@ -374,6 +380,8 @@ $ git branch <partner-2-github-username>/count-test
 ```
 
 You should prepend your branch with your username to make it easy to see who owns which branch and to avoid naming conflicts between individual contributors branches. After you have each created your individual branch, **it is very important** that you change to that branch with `git checkout <branch-name>`
+
+> Tip: If you are even in doubt, you can use `git branch` or `git status` to determine which (if any) branch you are currently on.
 
 ### The First Branch (Partner 1)
 
@@ -474,17 +482,17 @@ Each partner should also refresh their local git's view of what branches exist a
 
 Most organizations lock their master or main development branches so that code reviews and a passing set of unit and/or integration tests are required before code can be merged in to the master or main devleopment branches. The GitHub pull request system allows for maintainers of repositories to block changes from being added to certain branches until they meet specific requirements, such as having a minimum number of approved code reviews and successfully passing automated tests. By having GitHub enforce these rules for us *before* our stable branches (like master) can have code added to them, we greatly increase the changes that our stable branches will continue to be stable.
 
-Let's try doing this now. Both partners should open up their GitHub repository to prepare the PR. 
+Let's try doing this now. Both partners should open up their GitHub repository to prepare the pull request. 
 
 ### Creating a Pull Request
 
-Partner 1 should press on the "Branch" dropdown menu located right above the repository files list and select `<partner-1-github-username>/count-func`. This will cause you to switch to viewing the new branch, at which point you should click on the "New pull request" button right next to the "Branch" dropdown. This will bring up the editing screen for the PR. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section, searching for Partner 2's username, and selecting them. This will assign Partner 2 to review the PR and will add them to the notification list so they will receieve emails about any comments or discussion made on the PR. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Add Count Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand what modifications they need to look for. Once done finalizing the PR, click on "Create pull request".
+Partner 1 should press on the "Branch" dropdown menu located right above the repository files list and select `<partner-1-github-username>/count-func`. This will cause you to switch to viewing the new branch, at which point you should click on the "New pull request" button right next to the "Branch" dropdown. This will bring up the editing screen for the pull request. You might notice that this page looks similar to creating a new issue, with an added "Reviewers" section. Partner 1 should add a reviewer by clicking on the "Reviewers" section, searching for Partner 2's username, and selecting them. This will assign Partner 2 to review the pull request and will add them to the notification list so they will receieve emails about any comments or discussion made on the pull request. Make sure to also assign yourself (Partner 1) under the Assignees section, and give it a label that best suits the addition. Title it `Add Count Function` and leave a brief description of what is being added. In most cases, a description should be well-detailed so the reviewer can easily understand what modifications they need to look for. Once done finalizing the pull request, click on "Create pull request".
 
 Partner 2 should follow the same steps above, except by selecting `<partner-2-github-username>/count-test` from the branch dropdown menu. Also, title it `Count Unit Test`. Make sure to choose Partner 1 as the reviewer and Partner 2 as the assignee.
 
 ### Issue Tracking Strikes Back!
 
-Previously, in order to close an issue, we went to the issues page and closed it by hand. However, this is not the typical method for closing issues on GitHub. Instead, issues are usually closed through special annotations in commit messages. This has the benefit of not only closing the issue when the commit with the annotation is merged into master automatically, but also linking the PR or commit that has the annotation to the issue automatically so it can be easily referenced later if there is an issue.
+Previously, in order to close an issue, we went to the issues page and closed it by hand. However, this is not the typical method for closing issues on GitHub. Instead, issues are usually closed through special annotations in commit messages. This has the benefit of not only closing the issue when the commit with the annotation is merged into master automatically, but also linking the pull request or commit that has the annotation to the issue automatically so it can be easily referenced later if there is an issue.
 
 Both partner's should amend their latest commit message using the `--amend` flag, which re-opens the last commit allowing it to be changed. Type the following to do so:
 
@@ -498,11 +506,11 @@ This will open up your editor. The very top should contain your most recent comm
 
 Save the message and exit the editor, then push once more. You will need to force this push by entering `git push -f`, since this commit was already pushed earlier and needs to be updated.
 
-Go to your PRs on GitHub and you'll notice that every commit made to a branch that has an open PR will be listed. You should also notice that your commit message has a hyperlink. If you click on the number, it should send you to the specified issue. Once the PR is merged and closed, GitHub will take care of closing the issue for you automatically. Nice!
+Go to your pull requests on GitHub and you'll notice that every commit made to a branch that has an open pull request will be listed. You should also notice that your commit message has a hyperlink. If you click on the number, it should send you to the specified issue. Once the pull request is merged and closed, GitHub will take care of closing the issue for you automatically. Nice!
 
 ### Reviewing a Pull Request / Code Reviews
 
-When developing on existing projects, team members will usually be working on integrating features, squashing bugs, refactoring, or otherwise working with existing code. To help make sure that new changes will not adversely affect the system and are of generally high quality, code reviews are usually held with other members of the team. While there are lots of different ways to perform a code review, it is typically done through comments (either generally on the PR or related to specific lines of code changed in that PR). This is because GitHub is primarily focused on remote and decentralized teams. Because you are likely to see your team members often, you may find it easier to work through code reviews in person. This is fine, but we do request that you write a simple "Reviewed in person" comment before merging a PR (more on merging in a later section).
+When developing on existing projects, team members will usually be working on integrating features, squashing bugs, refactoring, or otherwise working with existing code. To help make sure that new changes will not adversely affect the system and are of generally high quality, code reviews are usually held with other members of the team. While there are lots of different ways to perform a code review, it is typically done through comments (either generally on the pull request or related to specific lines of code changed in that pull request). This is because GitHub is primarily focused on remote and decentralized teams. Because you are likely to see your team members often, you may find it easier to work through code reviews in person. This is fine, but we do request that you write a simple "Reviewed in person" comment before merging a pull request (more on merging in a later section).
 
 You should review this [guide](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/) for some good practices for code reviews, but here are some general rules to keep in mind:
 
@@ -511,13 +519,13 @@ You should review this [guide](https://smartbear.com/learn/code-review/best-prac
 * Use line item suggestions: when reviewing the files you can make a comment on a specific line making it much easier for the reviewee to know exactly what code you are referencing with your comment
 * Don't assume you know better: you may think a piece of code is incorrect or inefficient but it maybe that you simply don't have the full context of the problem. Rather than saying something is wrong suggest a way it might be improved and ask if there is an issue with your proposed solution or request more context about why a peice of code was written the way it was.
 
-Partner 2 should now review Partner 1's PR. Navigate to the "Pull requests" tab and choose the `Add Count Function` PR. From here, you can review comments made about the PR under the "Conversation" tab, all commits associated with that PR under the "Commits" tab, and what changes have been made to various files under the "Files changed" tab.
+Partner 2 should now review Partner 1's pull request. Navigate to the "Pull requests" tab and choose the `Add Count Function` pull request. From here, you can review comments made about the pull request under the "Conversation" tab, all commits associated with that pull request under the "Commits" tab, and what changes have been made to various files under the "Files changed" tab.
 
 Near the bottom of the "Conversation" tab, you should see a green checkmark next to a title reading "This branch has no conflicts with the base branch". This means GitHub found no merge conflicts between this branch and the master branch. Go ahead and press "Merge pull request", and it will ask you to confirm the merge which you should do. After you have merged it will ask if you want to delete the branch which you should do as it keeps your list of actively used branches small and clean. Note that this will remove the branch on the remote but you will need to run `git branch -d <branch-name>` to remove the local branch (replaceing `<branch-name>` with the name of the branch you want to remove).  This will cause GitHub to essentially call `git checkout master && git merge <partner-1-github-username>/count-func` behind the scenes and merge the branch into master. You are now given the option to delete the branch, which you should do. This keeps the number of branches associated with your repo manageable and stops you from accidentally re-using a branch for a feature it wasn't named for.
 
 > Note: deleting the branch will not automatically remove it from your local git (remember git doesn't automatically get updates from GitHub). You should switch off the branch on your local git (usually by checking out the master branch) and then run `git fetch` to sync your local git with GitHub, which will then trim the branch from your local git. If you do not do this and try and push from the deleted branc you will recieve an error.
 
-Partner 1 should navigate to the "Pull requests" tab and select the `Count Unit Test` PR. Unlike the first PR, this one has a merge conflict and GitHub cannot merge it automatically.
+Partner 1 should navigate to the "Pull requests" tab and select the `Count Unit Test` pull request. Unlike the first pull request, this one has a merge conflict and GitHub cannot merge it automatically.
 
 #### Fixing a Merge Conflict
 
@@ -570,13 +578,17 @@ Everything past `<<<<<<< HEAD` and before `=======` is the new code coming in fr
 
 > Note: while this merge was relatively straight-forward and we just wanted to accept what was in master, there are times when you will need to merge both branches in order to get what you actually want. This may lead to additional errors, so its always important to test the code to make sure it's still working after a merge has been resolved.
 
-Once you are done, be sure to `git add` the file you just modified, commit it, and push to GitHub. When committing a merge, simply typing `git commit` without the `-m` flag will automatically populate a merge message. Partner 1 should now refresh the `Count Unit Test` PR on GitHub. Notice that every commit made in the branch should appear within the PR automatically, so you don't need to close and re-open a PR if there are issues. PRs and the conversation and commit history associated with them can serve as valuable documentation about why certain design or coding decisions were made.
+Once you are done, be sure to `git add` the file you just modified, commit it, and push to GitHub. When committing a merge, simply typing `git commit` without the `-m` flag will automatically populate a merge message. Partner 1 should now refresh the `Count Unit Test` pull request on GitHub. Notice that every commit made in the branch should appear within the pull request automatically, so you don't need to close and re-open a pull request if there are issues. pull requests and the conversation and commit history associated with them can serve as valuable documentation about why certain design or coding decisions were made.
 
-Using the good practices for code reviews reference above, make sure everything looks good with this PR. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process of deleting the branch as stated above.
+Using the good practices for code reviews reference above, make sure everything looks good with this pull request. There should no longer be any merge conflicts, so go ahead and press "Merge pull request" and repeat the same process of deleting the branch as stated above.
 
 ## Reverting Commits
 
-Throughout the development process, there are times where new commits may introduce problems in existing code. For these situations we can use git to revert the changes so our master is functional while we debug the issue on our own branch. This is very important for larger teams who might have contributors branching off of a broken master, leading to frustration when a developer thinks their changs are broken when really it was master that was broken.
+Throughout the development process, there are times where new commits may introduce problems in existing code. For these situations we can use git to revert the changes so our master is functional while we debug the issue on our own branch. This is very important for larger teams who might have contributors branching off of a broken master, leading to frustration when a developer thinks their changes are broken when really it was master that was broken.
+
+> Tip: If you discover a *regression* as you are testing your changes that does not seem obviously related to your changes, you may want to quickly checkout master and test to see if the bug exists there, too.
+
+> Advanced tip: When tracking down a regression, it helps to identify the particular commit that introduced it.  To do this, first identify an older commit when the test case is known to work.  The offending commit can now be located using *binary search*.  The ability to isolate bugs in this way is a very powerful feature of version control.  There is a tool (`git bisect`) that automates this process for you.
 
 Uh-oh, we forgot about adding the function to `main.cpp`! Let's do that now. Since Partner 1 resolved the merge conflict, Partner 2 should do this part.
 
@@ -609,7 +621,7 @@ int main(int argv, char** argc) {
 
 Please git add, commit, and push one more time.
 
-> Note: To revert to two or more commits down the chain, replace `HEAD` with the commit reference (the long string of characters that identify each commit that can be viewed using `git log`).
+> Note: To revert to two or more commits down the chain, replace `HEAD` with the commit reference (the long string of characters ("hash") that identify each commit that can be viewed using `git log`).  When using a hash, you actually only need to specify the first several characters of the hash.  You can also use `HEAD^` to refer to the commit before the last one; `HEAD^^^` refers to the fourth-to-last commit.
 
 ## Tagging
 
