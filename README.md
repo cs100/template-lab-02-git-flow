@@ -238,7 +238,7 @@ $ git commit
 
 As you can see resolving merge conflicts can be a tedious process and many projects user various means to try to reduce the number of merge conflicts when possible. Some strategies you can use to try and reduce conflicts is to use good coding structure and splitting your classes into seperate files each with its own header and source file and breaking up development tasks to reduce concurrent overlap. However, merge conflicts are often unavoidable especially when working with larger teams. You will have to deal with some type of code confilict resolution in industry, so you should practice this process now so you are prepared to deal with it later.
 
-> Tip: There are graphical utilities that can make resolving conflicts much easier.  I use a tool called `meld` for this purpose.  This tool is not installed on `hammer`, but if you are using git locally, you may find the utility helpful.
+> Tip: There are graphical utilities that can make resolving conflicts easier such as `meld` (a visual diff and merge tool). This tool is not installed on `hammer`, but if you are using git locally, you may find the utility helpful.
 
 ## Git Push & Pull
 
