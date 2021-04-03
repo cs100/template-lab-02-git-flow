@@ -16,7 +16,15 @@ In this lab we will continue our discussion of Git as a means of version control
 * how to fix conflicts between branches
 * important Git terminology
 
-> Note: Just like with previous labs, make sure to clone this repository to `hammer` before continuing.
+> Note: Just like with previous labs, make sure to clone this repository to `hammer` before continuing. The code provided in this lab already contains a submodule, so you will need to clone it recursively in order to recieve the code in the submodule along with the repository code.
+
+```
+git clone --recursive <lab-clone-url>
+```
+
+> Note: whenever you close a repository with that contains submodules you will need to use the `--recursive` flag to recieve the code within the submodule. If you forget to clone it recursively, you can run `git submodule update --init --recursive` to pull the submodules after the repo has been cloned. This can also be necessary when switching to a branch which has had a submodule added to it.
+
+
 
 ## Git Branch & Log
 
@@ -303,21 +311,13 @@ Throughout the remainder of the lab, Partner 1 will be working on the count func
 
 > Note: If the "enhancement" or "unit test" label doesn't exist, click on "Edit labels" and then "New label" at the top right and add it.
 
-## Copying Files from the Bash Lab
+## Copying Files from Lab 1
 
 Did you think we we're done adding issues? Nope! ( ͡° ͜ʖ ͡°) 
 
-This lab will be extending the work you did in the Bash and Unit Tests lab. Create an issue for initializing the repository with the previous labs files (you should choose a good title and description) and assign the issue to both partners along with an "enhancement" label.
+This lab will be extending the work you did in the Introduction to Software Construction Tooling lab. Create an issue for initializing the repository with the previous lab files (you should choose a good title and description) and assign the issue to both partners along with an "enhancement" label.
 
-The code provided in this lab already contains a submodule, so you will need to clone it recursively in order to recieve the code in the submodule along with the repository code.
-
-```
-git clone --recursive <lab-clone-url>
-```
-
-> Note: whenever you close a repository with that contains submodules you will need to use the `--recursive` flag to recieve the code within the submodule. If you forget to clone it recursively, you can run `git submodule update --init --recursive` to pull the submodules after the repo has been cloned. This can also be necessary when switching to a branch which has had a submodule added to it.
-
-Since this is an extension of the previous lab start by copying over the files from your Bash and Unit Testing lab (either partners files will be fine as long as they completed the Bash and Unit Testing lab) into the new lab. If you are working in a different environment than before or no longer have a local copy of your Bash and Unit Testing lab, re-clone it to your machine before proceeding (but don't clone it into this lab's folder). Make sure that both the Bash and Unit Testing lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Bash and Unit Testing lab's directory and use the `cp` command to copy the following files into this labs directory.
+Since this is an extension of the previous lab start by copying over the files from the previous lab (either partners files will be fine as long as they completed Lab 1) into the new lab. If you are working in a different environment than before or no longer have a local copy of your lab 1, re-clone it to your machine before proceeding (but don't clone it into this lab's folder). Make sure that both the Introduction to Software Construction Tooling lab's directory and this lab's directory are on the same level of directory hierarchy, otherwise you will need to modify the path in the next step. Navigate to the Introduction to Software Construction Tooling lab's directory and use the `cp` command to copy the following files into this labs directory.
 
 ```
 cp c-echo.h test.cpp CMakeLists.txt main2.cpp .gitignore ../<this-labs-directory>
