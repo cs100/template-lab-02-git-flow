@@ -16,7 +16,7 @@ In this lab we will continue our discussion of Git as a means of version control
 * how to fix conflicts between branches
 * important Git terminology
 
-> Note: Just like with previous labs, make sure to clone this repository to `hammer` before continuing. The code provided in this lab already contains a submodule, so you will need to clone it recursively in order to recieve the code in the submodule along with the repository code.
+> Note: Just like with previous labs, make sure to clone this repository to `hammer` before continuing. The code provided in this lab already contains a submodule (i.e. googletest), so you will need to clone it recursively in order to recieve the code in the submodule along with the repository code.
 
 ```
 git clone --recursive <lab-clone-url>
